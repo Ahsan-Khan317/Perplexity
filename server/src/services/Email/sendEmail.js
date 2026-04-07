@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 
+
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -15,18 +16,24 @@ transporter.verify()
     .then(() => { console.log("Email transporter is ready to send emails"); })
     .catch((err) => { console.error("Email transporter verification failed:", err); });
 
+const sendEmail = async (to, subject, html, text) => {
+    try {
+        const mailOptions = {
+            from: process.env.GOOGLE_USER,
+            to,
+            subject,
+            html,
+            text
+        };
 
-const sendEmail = async({ to, subject, html, text })=> {
+        const info = await transporter.sendMail(mailOptions);
+        console.log("Email sent successfully:", info.response);
+        return info;
+    } catch (err) {
+        console.error("Error sending email:", err);
+        throw err; // Let the caller know
+    }
+};
 
-    const mailOptions = {
-        from: process.env.GOOGLE_USER,
-        to,
-        subject,
-        html,
-        text
-    };
-
-    const details = await transporter.sendMail(mailOptions);
-    console.log("Email sent:", details);
-}
-export default sendEmail
+export default sendEmail;
+  

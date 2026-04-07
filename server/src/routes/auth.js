@@ -8,5 +8,5 @@ import verify_email from "../controllers/auth/verify_email.js"
 const authRouter = express.Router()
 
 authRouter.post("/signup",signup_validator,validate,signup)
-authRouter.get("/veryfy/email/:id",id_validator,validate,verify_email)
+authRouter.get("/verify/email/:id",id_validator,validate,verify_email)
 export default authRouter

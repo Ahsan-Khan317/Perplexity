@@ -33,16 +33,24 @@ userschema.pre("save",async function(){
 
 })
 
-userschema.method.comparePassword = async function (password) {
+userschema.methods.comparePassword = async function (password) {
     const result =await  bcrypt.compare(password,this.password)
     return result
 }
-userschema.post("save",async function (doc) {
-if(!doc.isNew) return
-const link = `http://localhost:4200/perplexity/auth/veryfy/email/${doc._id}`
-    sendEmail({to:doc.email,subject:"Verify Your Account",html:verify_emailmsg(link)})
-})
+userschema.post("save", async function(doc) {
+   
+    const link =`http://localhost:4200/perplexity/auth/verify/email/${doc._id}`;
+    try {
+        await sendEmail(doc.email, "Verify Your Account", verify_emailmsg(link));
+        console.log(`Email sent to ${doc.email}`);
+    } catch (err) {
+        console.error("Email sending failed:", err);
+    }
+});
 
 const userModel = mongoose.model("users",userschema)
 
 export default userModel
+
+
+
