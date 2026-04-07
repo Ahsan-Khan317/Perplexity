@@ -1,5 +1,7 @@
 import mongoose from "mongoose"
 import bcrypt from "bcrypt"
+import sendEmail from "../services/Email/sendEmail.js"
+import { verify_emailmsg } from "../services/Email/email_msg.js"
 const userschema = new mongoose.Schema({
     username:{
         type:String,
@@ -35,7 +37,11 @@ userschema.method.comparePassword = async function (password) {
     const result =await  bcrypt.compare(password,this.password)
     return result
 }
-
+userschema.post("save",async function (doc) {
+if(!doc.isNew) return
+const link = `http://localhost:4200/perplexity/auth/veryfy/email/${doc._id}`
+    sendEmail({to:doc.email,subject:"Verify Your Account",html:verify_emailmsg(link)})
+})
 
 const userModel = mongoose.model("users",userschema)
 
