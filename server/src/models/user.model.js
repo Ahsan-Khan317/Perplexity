@@ -39,7 +39,7 @@ userschema.methods.comparePassword = async function (password) {
 }
 userschema.post("save", async function(doc) {
    
-    const link =`http://localhost:4200/perplexity/auth/verify/email/${doc._id}`;
+    const link =`https://perplexity-oepg.onrender.com/perplexity/auth/verify/email/${doc._id}`;
     try {
         await sendEmail(doc.email, "Verify Your Account", verify_emailmsg(link));
         console.log(`Email sent to ${doc.email}`);
