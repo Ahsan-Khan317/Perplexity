@@ -3,18 +3,22 @@ import "../../config/env.js";
 
 // ✅ Create transporter with 10s timeout
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // SSL
+
   auth: {
     user: process.env.EMAIL,
-    pass: process.env.APP_PASSWORD // 🔥 App Password (NOT normal password)
+    pass: process.env.APP_PASSWORD
   },
 
-  // ✅ Prevent instant crash (wait 10 seconds)
+  // ✅ Force IPv4 (THIS FIXES YOUR ERROR)
+  family: 4,
+
   connectionTimeout: 10000,
   greetingTimeout: 10000,
   socketTimeout: 10000,
 
-  // ✅ Debugging (optional but helpful)
   logger: true,
   debug: true
 });
