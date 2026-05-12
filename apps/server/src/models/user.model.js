@@ -1,0 +1,57 @@
+import mongoose from "mongoose";
+import bcrypt from "bcrypt";
+import sendEmail from "../services/Email/sendEmail.js";
+import { verify_emailmsg } from "../services/Email/email_msg.js";
+import { refreshToken } from "../utils/generateToken.js";
+const userschema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: [true, "username is required for signup"],
+    trim: true,
+  },
+
+  email: {
+    type: String,
+    required: [true, "Email is required for signup"],
+    unique: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: [true, "password is required for signup"],
+    select: false,
+  },
+  isverify: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+userschema.pre("save", async function () {
+  if (!this.isModified("password")) return;
+  this.password = await bcrypt.hash(this.password, 12);
+});
+
+userschema.methods.comparePassword = async function (password) {
+  const result = await bcrypt.compare(password, this.password);
+  return result;
+};
+userschema.post("save", async function (doc) {
+  const token = refreshToken(doc._id);
+
+  const link = `http://localhost:4200/perplexity/auth/verify/email?token=${token}`;
+  try {
+    await sendEmail({
+      to: doc.email,
+      subject: "Verify Your Account",
+      html: verify_emailmsg(link),
+    });
+    console.log(`Email sent to ${doc.email}`);
+  } catch (err) {
+    console.error("Email sending failed:", err);
+  }
+});
+
+const userModel = mongoose.model("users", userschema);
+
+export default userModel;

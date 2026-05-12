@@ -1,0 +1,22 @@
+import express from "express";
+import signup_validator from "../validators/auth/register.validator.js";
+import validate from "../middleware/validate/validate.js";
+import signup from "../controllers/auth/signup.js";
+import id_validator from "../validators/auth/id.validator.js";
+import verify_email from "../controllers/auth/verify_email.js";
+import query_validator from "../validators/auth/query.validator.js";
+import login_validator from "../validators/auth/login_validator.js";
+import login from "../controllers/auth/login.js";
+import logout from "../controllers/auth/logout.js";
+import getAccessToken from "../controllers/auth/getaccessToken.js";
+import get_me from "../controllers/auth/get-me.js";
+import auth_middleware from "../middleware/auth/auth.middleware.js";
+const authRouter = express.Router();
+
+authRouter.post("/signup", signup_validator, validate, signup);
+authRouter.post("/login", login_validator, validate, login);
+authRouter.get("/verify/email", query_validator, validate, verify_email);
+authRouter.post("/logout", logout);
+authRouter.post("/get/AccessToken", getAccessToken);
+authRouter.get("/get-me", auth_middleware, get_me);
+export default authRouter;
