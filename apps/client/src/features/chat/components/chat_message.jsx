@@ -2,7 +2,7 @@ import { Bot, User2 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
+import { ApiLoader } from "../../../shared/components/apiLoader.jsx";
 const ChatMessage = ({ messages, isTyping = false }) => {
   const messagesEndRef = useRef(null);
   const messageRefs = useRef({});
@@ -20,9 +20,11 @@ const ChatMessage = ({ messages, isTyping = false }) => {
       hour12: true,
     });
   };
-
+  {
+    console.log(messages);
+  }
   return (
-    <div className="w-full flex flex-col gap-6 px-3 sm:px-5 py-6 bg-linear-to-b from-zinc-950 to-black">
+    <div className="w-full flex flex-col gap-6 px-3 sm:px-5 py-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
       {messages?.map((msg, index) => {
         const isAI = msg.role === "ai";
         const isLast = index === messages.length - 1;
@@ -75,7 +77,8 @@ const ChatMessage = ({ messages, isTyping = false }) => {
                     className="
                       relative
                       max-h-96
-                      overflow-y-auto
+                      overflow-y-auto overflow-x-hidden
+                      wrap-break-words whitespace-pre-wrap
                       bg-zinc-900/95
                       backdrop-blur-xl
                       border border-zinc-800/50
@@ -105,7 +108,7 @@ const ChatMessage = ({ messages, isTyping = false }) => {
                       </div>
                     ) : (
                       <div className="prose prose-invert prose-sm max-w-none">
-                        <ReactMarkdown remarkPlugins={remarkGfm}>{msg.content}</ReactMarkdown>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg?.content}</ReactMarkdown>
                       </div>
                     )}
                   </div>
@@ -124,7 +127,8 @@ const ChatMessage = ({ messages, isTyping = false }) => {
                   <div
                     className="
                       max-h-96
-                      overflow-y-auto
+                      overflow-y-auto overflow-x-hidden
+                      wrap-break-words whitespace-pre-wrap
                       bg-yellow-400/5
                       backdrop-blur-xl
                       border border-yellow-400/20
@@ -138,7 +142,9 @@ const ChatMessage = ({ messages, isTyping = false }) => {
                       hover:shadow-yellow-500/10
                     "
                   >
-                    <div className="prose prose-invert prose-sm max-w-none">{msg.content}</div>
+                    <div className="prose prose-invert prose-sm max-w-none wrap-break-words whitespace-pre-wrap">
+                      {msg.content}
+                    </div>
                   </div>
                 </div>
 

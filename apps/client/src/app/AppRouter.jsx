@@ -5,7 +5,8 @@ import HomePage from "../features/home/home.page.jsx";
 import Chat from "../features/chat/pages/chat.jsx";
 import VerifyAccount from "../features/auth/pages/verify_account.jsx";
 import Protect_routes from "../features/auth/components/Authorization.jsx";
-
+import ComingSoonModal from "../features/chat/pages/chats_search.jsx";
+import NotFound from "../shared/components/404.jsx";
 const AppRouter = (isAuthenticated) => {
   return createBrowserRouter([
     {
@@ -29,8 +30,20 @@ const AppRouter = (isAuthenticated) => {
       ),
     },
     {
+      path: "/chat/search",
+      element: (
+        <Protect_routes>
+          <ComingSoonModal />
+        </Protect_routes>
+      ),
+    },
+    {
       path: "/verify_account",
       element: <VerifyAccount />,
+    },
+    {
+      path: "*",
+      element: <NotFound />,
     },
   ]);
 };

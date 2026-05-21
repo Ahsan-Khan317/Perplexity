@@ -6,6 +6,15 @@ import { SetAccessToken } from "../../shared/Api/axiosInstance.js";
 const UseAuth = () => {
   const dispatch = useDispatch();
 
+  const get_me = async () => {
+    try {
+      const get_me = await dispatch(authThunk?.get_me()).unwrap();
+      console.log(get_me?.message);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const signup = async (data) => {
     try {
       const register = await dispatch(authThunk?.signup(data)).unwrap();
@@ -20,21 +29,15 @@ const UseAuth = () => {
   const login = async (data) => {
     try {
       const login = await dispatch(authThunk?.login(data)).unwrap();
-      if (login?.data?.accessToken) {
-      }
+
+      SetAccessToken(login?.data?.accessToken);
+      // console.log(login?.data?.accessToken)
+      await get_me();
+
       toast.success(login?.message || "login successfull");
       return login;
     } catch (err) {
       toast.error(err || "login failed");
-    }
-  };
-
-  const get_me = async () => {
-    try {
-      const get_me = await dispatch(authThunk?.get_me()).unwrap();
-      console.log(get_me?.message);
-    } catch (err) {
-      console.log(err);
     }
   };
 

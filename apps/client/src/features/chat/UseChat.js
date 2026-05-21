@@ -44,7 +44,7 @@ const UseChat = () => {
 
       const Ai = response?.data?.chat?.AI;
 
-      if (chatid == "" && Ai) {
+      if (chatid == " " && Ai) {
         await getAllChat();
       }
 

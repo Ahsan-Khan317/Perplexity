@@ -27,7 +27,10 @@ export const getAllMessage = asyncHandler(async (req, res, next) => {
 
 export const getAllChats = asyncHandler(async (req, res, next) => {
   const userid = req.user.userid;
-  const chats = await ChatServices.getAllChats(userid);
+  let chats = await ChatServices.getAllChats(userid);
+  chats.sort((a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  });
 
   res.send(new ApiResponse(200, "chats data fetched successfully", chats));
 });

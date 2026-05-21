@@ -6,6 +6,7 @@ import {
   get_accessToken,
   logout,
 } from "./auth.controller.js";
+import { Loginlimiter } from "../../shared/utils/ratelimit.js";
 import express from "express";
 import {
   signup_validator,
@@ -20,7 +21,7 @@ const AuthRouter = express.Router();
 
 AuthRouter.post("/signup", signup_validator, validate, registerUser);
 AuthRouter.get("/verify_email", verify_email);
-AuthRouter.post("/login", login_validator, validate, login);
+AuthRouter.post("/login", Loginlimiter, login_validator, validate, login);
 AuthRouter.get("/get_me", auth_middleware, get_me);
 AuthRouter.get("/get_accessToken", get_accessToken);
 AuthRouter.get("/logout", logout);

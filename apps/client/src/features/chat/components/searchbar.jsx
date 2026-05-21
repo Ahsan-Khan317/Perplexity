@@ -93,7 +93,7 @@ const SearchBar = ({ active, setactive }) => {
         {/* LEFT ICON */}
         <div
           className="
-            mt-1
+            
             
             w-8 h-8
             
@@ -323,7 +323,7 @@ const SearchBar = ({ active, setactive }) => {
                 h-full
                 rotate-12
                 
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-transparent
                 via-white/10
                 to-transparent
@@ -347,7 +347,7 @@ const SearchBar = ({ active, setactive }) => {
               
               rounded-2xl
               
-              bg-gradient-to-r
+              bg-linear-to-r
               from-[#FFD84D]
               to-[#FFBF00]
               
@@ -377,7 +377,7 @@ const SearchBar = ({ active, setactive }) => {
                 h-full
                 rotate-12
                 
-                bg-gradient-to-r
+                bg-linear-to-r
                 from-transparent
                 via-white/30
                 to-transparent

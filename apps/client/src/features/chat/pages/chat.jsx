@@ -54,7 +54,7 @@ const Chat = () => {
         onTouchEnd={(e) => {
           handleEnd(e);
         }}
-        className="h-full flex-1 flex flex-col  p-2 text-white"
+        className="h-full flex-1 flex flex-col overflow-hidden p-2 text-white"
       >
         <Chat_section
           onclick={() => setslidestate(!slidestate)}

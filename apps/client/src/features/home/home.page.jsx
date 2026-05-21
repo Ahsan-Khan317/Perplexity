@@ -88,7 +88,7 @@ const HomePage = () => {
                   {/* User */}
                   <div className="flex justify-end">
                     <div className="bg-yellow-400 text-black px-3 py-2 rounded-2xl rounded-br-md max-w-[85%] text-[10px] font-medium leading-relaxed">
-                      Send an email to the Education Minister regarding the NEET paper leak issue.
+                      What happened in tech news yesterday? Any major updates?
                     </div>
                   </div>
 
@@ -99,23 +99,29 @@ const HomePage = () => {
                     </div>
 
                     <div className="bg-white/5 border border-white/10 px-3 py-2 rounded-2xl rounded-tl-md text-[10px] text-gray-300 leading-relaxed max-w-[88%]">
-                      <p className="text-green-400 font-medium mb-2">✓ Email sent successfully</p>
+                      <p className="text-yellow-400 font-medium mb-1">📰 Real-time Tech Update</p>
 
                       <div className="space-y-1">
                         <p>
-                          <span className="text-gray-500">To:</span> educationminister@gov.in
+                          <span className="text-gray-400">• </span>OpenAI unveiled GPT-5 with
+                          enhanced reasoning capabilities
                         </p>
 
                         <p>
-                          <span className="text-gray-500">Subject:</span> Concern Regarding NEET
-                          Paper Leak
+                          <span className="text-gray-400">• </span>Apple announced AI integration
+                          across iOS 18
+                        </p>
+
+                        <p>
+                          <span className="text-gray-400">• </span>Nvidia released CUDA 13.2 with
+                          better performance
                         </p>
                       </div>
 
-                      <div className="border-t border-white/10 mt-2 pt-2">
-                        <p>
-                          Verified government contact researched, professional email generated, and
-                          successfully delivered to the official ministry email address.
+                      <div className="border-t border-white/10 mt-1 pt-1 mt-1">
+                        <p className="text-[9px]">
+                          All data gathered from latest news sources, official announcements and
+                          tech publications.
                         </p>
                       </div>
                     </div>
@@ -173,13 +179,12 @@ const HomePage = () => {
 
                 <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
               </div>
-              Chat
               <div className="mt-6 space-y-5">
                 {/* User */}
                 <div className="flex justify-end">
                   <div className="bg-yellow-400 text-black px-4 py-3 rounded-2xl rounded-br-md max-w-[85%] text-sm font-medium leading-relaxed shadow-lg">
-                    Send a professional email to the Education Minister regarding the NEET paper
-                    leak issue after researching the official contact details.
+                    What were the latest developments in AI and tech from yesterday? Current market
+                    impact?
                   </div>
                 </div>
 
@@ -190,30 +195,39 @@ const HomePage = () => {
                   </div>
 
                   <div className="bg-white/5 border border-white/10 px-4 py-4 rounded-2xl rounded-tl-md text-sm text-gray-300 leading-relaxed max-w-[88%]">
-                    <p className="text-green-400 font-medium mb-4">✓ Email sent successfully</p>
+                    <p className="text-yellow-400 font-medium mb-4">
+                      📊 Real-Time Market & Tech Analysis
+                    </p>
 
-                    <div className="space-y-2">
-                      <p>
-                        <span className="text-gray-500">To:</span> educationminister@gov.in
-                      </p>
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-white font-semibold mb-1">🚀 Major Tech Announcements</p>
+                        <p>
+                          OpenAI launched GPT-5 with advanced reasoning. Market response: Tech
+                          stocks surged 2.3%
+                        </p>
+                      </div>
 
-                      <p>
-                        <span className="text-gray-500">Subject:</span> Concern Regarding NEET Paper
-                        Leak
-                      </p>
+                      <div>
+                        <p className="text-white font-semibold mb-1">💰 Stock Movement</p>
+                        <p>
+                          NVIDIA up 4.1%, Apple up 2.8%, Microsoft up 1.9% on AI advancement news
+                        </p>
+                      </div>
+
+                      <div>
+                        <p className="text-white font-semibold mb-1">📱 Industry Impact</p>
+                        <p>
+                          Enterprise AI adoption accelerating. Cloud computing demand increases by
+                          15% YoY
+                        </p>
+                      </div>
                     </div>
 
                     <div className="border-t border-white/10 mt-4 pt-4">
-                      <p>
-                        Dear Education Minister,
-                        <br />
-                        <br />
-                        I would like to express concern regarding the NEET paper leak issue
-                        affecting thousands of students. Kindly investigate the matter and ensure
-                        fair examination practices.
-                        <br />
-                        <br />
-                        Thank you.
+                      <p className="text-xs text-gray-400">
+                        Data sourced from real-time market feeds, official tech announcements, and
+                        financial news platforms.
                       </p>
                     </div>
                   </div>

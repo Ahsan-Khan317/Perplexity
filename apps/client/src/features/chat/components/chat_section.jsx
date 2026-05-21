@@ -16,16 +16,16 @@ const Chat_section = ({ onclick, active, setactive }) => {
   return (
     <>
       {/* Chat Middle Section */}
-      <div className="flex flex-1 flex-col min-h-0 justify-center pt-18 sm:py-5 ">
+      <div className="flex flex-1 flex-col min-h-0 justify-start pt-18 sm:py-5 ">
         {/* Chat Messages Area */}
-        <div className="flex flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
+        <div className="flex flex-1 min-h-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
           {active ? <ChatMessage messages={messages} /> : <Chatintro active={active} />}
         </div>
 
         {/* Search Bar Area */}
         <div
           className={`
-          ${active ? "min-h-40  pb-2 items-end" : "flex-1  items-start"}
+          ${active ? "min-h-auto  pb-1 items-end" : "flex-1  items-start"}
           flex justify-center transition-all duration-300
         `}
         >

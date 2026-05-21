@@ -19,7 +19,7 @@ import UseChat from "../UseChat.js";
 
 const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
   const { titles } = useSelector((state) => state.Chat);
-
+  const { data } = useSelector((state) => state.Auth);
   const navigate = useNavigate();
   const { newChat } = UseChat();
   const { logout } = UseAuth();
@@ -61,6 +61,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
         {/* //for pc */}
         <button
           onClick={() => {
+            setintro(!intro);
             setactive("newchat");
             const res = newChat();
             if (res) return navigate("/chat");
@@ -73,6 +74,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
         <button
           onClick={() => {
             setactive("search");
+            navigate("/chat/search");
           }}
           className={`${active == "search" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full not-sm:hidden hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
         >
@@ -83,14 +85,23 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
 
         <div
           onClick={() => {
+            setintro(!intro);
             const res = newChat();
+
             if (res) return navigate("/chat");
           }}
           className="flex gap-2 justify-center sm:hidden  items-center px-3 rounded-2xl bg-gray-900 text-white"
         >
           {" "}
           <button className="text-[20px] active:scale-90">📝</button> |{" "}
-          <button className="text-2xl active:scale-90">🔍</button>
+          <button
+            onClick={() => {
+              navigate("/chat/search");
+            }}
+            className="text-2xl active:scale-90"
+          >
+            🔍
+          </button>
         </div>
       </div>
 
@@ -135,12 +146,12 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
       <div className=" py-1   w-full flex flex-col justify-start items-center ">
         <div className=" text-white flex justify-start items-center gap-3 w-full px-4   flex-1/2">
           <div className="py-1 px-1.5 rounded-full bg-amber-400 text-gray-600 border-double border-white border-9">
-            HK
+            {data?.username.slice(0, 2)}
           </div>
 
           <div className="flex text-gray-400 flex-col">
-            <span>username</span>
-            <span>sk6582757@gmail.com</span>
+            <span>{data?.username}</span>
+            <span>{data?.email}</span>
           </div>
         </div>
 
