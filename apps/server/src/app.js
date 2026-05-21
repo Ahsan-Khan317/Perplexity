@@ -1,18 +1,18 @@
 import express from "express";
-import authRouter from "./routes/auth.js";
+import morgan from "morgan";
 import cookieParser from "cookie-parser";
-import cors from "cors";
-import Error_middleware from "./middleware/Error/error.middleware.js";
-
+import rootRouter from "./shared/Router/root.router.js";
+import { corsMiddleware } from "./shared/middleware/cors.middleware.js";
+import { Error_middleware } from "./shared/middleware/error.middleware.js";
 const app = express();
 
 //middleware
-
+app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(cors());
+app.use(corsMiddleware);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/perplexity/auth", authRouter);
+app.use("/perplexity", rootRouter);
 
 //Error_middleware
 app.use(Error_middleware);

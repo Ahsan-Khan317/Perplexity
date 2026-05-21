@@ -1,18 +1,23 @@
 {
-  "dependencies": {},
-  "scripts": {
-    "prepare": "husky",
-    "dev": "concurrently -n client,server -c green,cyan \"npm run dev --prefix apps/client\" \"npm run dev --prefix apps/server\""
-  },
   "name": "perplexity",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "concurrently -n client,server -c green,cyan \"npm run dev --prefix apps/client\" \"npm run dev --prefix apps/server\""
+  },
+  "dependencies": {},
   "devDependencies": {
     "concurrently": "^9.2.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,json}": [
+      "prettier --write"
+    ]
   },
   "repository": {
     "type": "git",

@@ -11,7 +11,10 @@
   "author": "md ahsan khan",
   "license": "ISC",
   "dependencies": {
-    "@langchain/mistralai": "^1.0.7",
+    "@langchain/core": "^1.1.46",
+    "@langchain/google": "^0.1.11",
+    "@langchain/groq": "^1.2.0",
+    "@langchain/mistralai": "^1.0.8",
     "@sendgrid/mail": "^8.1.6",
     "@tavily/core": "^0.7.3",
     "bcrypt": "^6.0.0",
@@ -22,14 +25,16 @@
     "express-validator": "^7.3.2",
     "googleapis": "^171.4.0",
     "jsonwebtoken": "^9.0.3",
-    "langchain": "^1.3.4",
+    "langchain": "^1.4.0",
     "mongoose": "^9.4.1",
+    "morgan": "^1.10.1",
     "nodemailer": "^8.0.4",
     "nodemon": "^3.1.14",
     "readline": "^1.3.0",
     "resend": "^6.12.3",
     "socket.io": "^4.8.3",
+    "uninstall": "^0.0.0",
     "validator": "^13.15.35",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   }
 }
