@@ -27,9 +27,9 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const result = await signup(data);
+    const result = signup(data);
     if (result) return navigate("/verify_account");
   };
 

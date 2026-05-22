@@ -20,6 +20,7 @@ const UseAuth = () => {
       const register = await dispatch(authThunk?.signup(data)).unwrap();
 
       toast.success(register?.message || "signup successfull");
+
       return register;
     } catch (err) {
       toast.error(err || "signup failed");

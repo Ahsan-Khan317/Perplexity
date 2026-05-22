@@ -36,7 +36,6 @@ const UseChat = () => {
         createdAt: new Date().toISOString(),
         role: "you",
       };
-      console.log(you);
 
       dispatch(addMessage(you));
 
@@ -54,7 +53,7 @@ const UseChat = () => {
         dispatch(addMessage(Ai));
       }
     } catch (error) {
-      console.log(error);
+      toast.error(error);
     }
   };
 

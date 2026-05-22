@@ -1,6 +1,6 @@
 import { Trash2 } from "lucide-react";
 import UseChat from "../UseChat.js";
-const Chat_container = ({ id, title, intro, setintro }) => {
+const Chat_container = ({ id, title, intro, setintro, setslidestate }) => {
   const { deleteChat, getMessage } = UseChat();
 
   return (
@@ -9,6 +9,7 @@ const Chat_container = ({ id, title, intro, setintro }) => {
       onClick={() => {
         getMessage(id);
         setintro(true);
+        setslidestate(false);
       }}
       className="
     group relative overflow-hidden

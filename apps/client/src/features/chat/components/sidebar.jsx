@@ -135,6 +135,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
                 intro={intro}
                 setintro={setintro}
                 title={e.title}
+                setslidestate={setslidestate}
               />
             );
           })}
