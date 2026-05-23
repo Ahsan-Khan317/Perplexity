@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useRef, lazy } from "react";
 import { useState } from "react";
 import Chat_container from "../components/chat_container.jsx";
 import Logo from "../../../shared/components/logo.jsx";
+const ChatSearchPage = lazy(() => import("../pages/chats_search.jsx"));
 import {
   SquarePen,
   Search,
@@ -18,6 +19,7 @@ import { useSelector } from "react-redux";
 import UseChat from "../UseChat.js";
 
 const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
+  const [showsearchpage, setshowsearchpage] = useState(false);
   const { titles } = useSelector((state) => state.Chat);
   const { data } = useSelector((state) => state.Auth);
   const navigate = useNavigate();
@@ -33,6 +35,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
     Start.current = e.changedTouches[0].screenX;
   };
   const handleEnd = (e) => {
+    if (showsearchpage) return;
     End.current = e.changedTouches[0].screenX;
 
     const distance = Start.current - End.current;
@@ -52,8 +55,16 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
       onTouchEnd={(e) => {
         handleEnd(e);
       }}
-      className={`h-full pt-3 sm:pt-9 w-full fixed z-30 md:relative bg-black/90 top-0 left-0  md:w-[18%] transition-all duration-200 gap-2 ${slidestate ? "not-sm:translate-x-0" : "not-sm:-translate-x-full"} flex flex-col justify-start items-center border-r border-r-amber-50 `}
+      className={`h-full pt-3 sm:pt-9 w-full fixed z-30 md:relative bg-black top-0 left-0  md:w-[18%] transition-all duration-200 gap-2 ${slidestate ? "not-sm:translate-x-0" : "not-sm:-translate-x-full"} flex flex-col justify-start items-center border-r border-r-amber-50 `}
     >
+      <ChatSearchPage
+        setshowsearchpage={setshowsearchpage}
+        showsearchpage={showsearchpage}
+        titles={titles}
+        setslidestate={setslidestate}
+        setintro={setintro}
+      />
+
       {/* //upper part of sidebar */}
       <div className="flex  sm:flex-col gap-5 justify-between sm:justify-start w-full px-4 ">
         <Logo />
@@ -61,7 +72,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
         {/* //for pc */}
         <button
           onClick={() => {
-            setintro(!intro);
+            setintro(false);
             setactive("newchat");
             const res = newChat();
             if (res) return navigate("/chat");
@@ -74,7 +85,8 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
         <button
           onClick={() => {
             setactive("search");
-            navigate("/chat/search");
+
+            setshowsearchpage(true);
           }}
           className={`${active == "search" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full not-sm:hidden hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
         >
@@ -83,20 +95,24 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
 
         {/* //for mobile */}
 
-        <div
-          onClick={() => {
-            setintro(!intro);
-            const res = newChat();
-
-            if (res) return navigate("/chat");
-          }}
-          className="flex gap-2 justify-center sm:hidden  items-center px-3 rounded-2xl bg-gray-900 text-white"
-        >
+        <div className="flex gap-2 justify-center sm:hidden  items-center px-3 rounded-2xl bg-gray-900 text-white">
           {" "}
-          <button className="text-[20px] active:scale-90">📝</button> |{" "}
           <button
             onClick={() => {
-              navigate("/chat/search");
+              setintro(false);
+              setslidestate(!slidestate);
+              const res = newChat();
+
+              if (res) return navigate("/chat");
+            }}
+            className="text-[20px] active:scale-90"
+          >
+            📝
+          </button>{" "}
+          |{" "}
+          <button
+            onClick={() => {
+              setshowsearchpage(true);
             }}
             className="text-2xl active:scale-90"
           >
@@ -127,11 +143,11 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
         <div
           className={` ${!active ? "hidden" : "flex"} flex-1  w-full  flex-col gap-2 pl-6  items-start justify-start p-1  scrollbar  overflow-y-auto `}
         >
-          {titles.data.map((e, _) => {
+          {titles?.data?.map((e, _) => {
             return (
               <Chat_container
-                key={e._id}
-                id={e._id}
+                key={e?._id}
+                id={e?._id}
                 intro={intro}
                 setintro={setintro}
                 title={e.title}
@@ -156,14 +172,67 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
           </div>
         </div>
 
-        <div className="flex flex-1/2 w-full justify-center p-3 ">
+        {/* //logout */}
+
+        <div className="flex flex-1/2 w-full justify-center p-3">
           <button
             onClick={async () => {
               await logout();
             }}
-            className="text-red-600 text-md w-[90%] sm:w-[90%] text-center z-31 px-8 py-2  gap-3 items-center   tracking-widest cursor-pointer active:scale-90 transition-all duration-150 flex rounded-md border-red-600 border"
+            className="
+      group relative overflow-hidden
+
+      w-auto sm:w-[90%]
+      min-w-40
+
+      flex items-center justify-center gap-3
+
+      rounded-2xl
+      border border-red-500/20
+      bg-linear-to-br from-zinc-900 to-zinc-950
+
+      px-5 py-3
+      text-sm font-medium tracking-wide
+      text-red-400
+
+      shadow-lg shadow-black/20
+      backdrop-blur-xl
+
+      transition-all duration-300 ease-out
+
+      hover:border-red-500/40
+      hover:bg-red-500/5
+      hover:shadow-red-500/10
+      hover:scale-[1.02]
+
+      active:scale-[0.98]
+    "
           >
-            <LogOut /> Log out{" "}
+            {/* Glow Effect */}
+            <div
+              className="
+        absolute inset-0
+        opacity-0 group-hover:opacity-100
+        transition-opacity duration-300
+        bg-linear-to-r
+        from-transparent
+        via-red-500/10
+        to-transparent
+      "
+            />
+
+            {/* Icon */}
+            <LogOut
+              size={18}
+              className="
+        relative z-10
+        transition-transform duration-300
+        group-hover:-translate-x-1
+      "
+            />
+
+            {/* Text */}
+            <span className="relative z-10">Log out</span>
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Zap, Sparkles } from "lucide-react";
 import SearchBar from "./searchbar.jsx";
 import Logo from "../../../shared/components/logo.jsx";
@@ -7,19 +7,36 @@ import ChatMessage from "./chat_message.jsx";
 import UseChat from "../UseChat.js";
 import { useSelector } from "react-redux";
 
-const Chat_section = ({ onclick, active, setactive }) => {
+const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
   const { messages } = useSelector((state) => state.Chat);
-  {
-    messages;
-  }
+  const messagesRef = useRef(null);
+
+  useEffect(() => {
+    const container = messagesRef.current;
+    if (!container) return;
+
+    const timer = setTimeout(() => {
+      container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [messages]);
 
   return (
     <>
       {/* Chat Middle Section */}
-      <div className="flex flex-1 flex-col min-h-0 justify-start pt-18 sm:py-5 ">
+      <div className="flex flex-1 flex-col min-h-0 justify-start ">
         {/* Chat Messages Area */}
-        <div className="flex flex-1 min-h-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent">
-          {active ? <ChatMessage messages={messages} /> : <Chatintro active={active} />}
+
+        <div
+          ref={messagesRef}
+          className="flex flex-1 min-h-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent"
+        >
+          {active ? (
+            <ChatMessage messages={messages} setslidestate={setslidestate} />
+          ) : (
+            <Chatintro active={active} />
+          )}
         </div>
 
         {/* Search Bar Area */}

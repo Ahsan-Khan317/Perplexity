@@ -1,13 +1,14 @@
 import { RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import "react-loading-skeleton/dist/skeleton.css";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { refreshToken, SetAccessToken } from "../shared/Api/axiosInstance.js";
 import UseAuth from "../features/auth/useAuth.jsx";
 import { ApiLoader } from "../shared/components/apiLoader.jsx";
 import AppRouter from "./AppRouter.jsx";
 import UseChat from "../features/chat/UseChat.js";
+
 function App() {
   const { data, isAuthenticated } = useSelector((state) => state.Auth);
   const { get_me } = UseAuth();
@@ -40,7 +41,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={Router} />
+      <Suspense fallback={<ApiLoader />}>
+        <RouterProvider router={Router} />
+      </Suspense>
       <Toaster position="top-center" />
     </>
   );

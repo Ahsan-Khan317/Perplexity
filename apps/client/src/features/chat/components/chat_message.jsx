@@ -1,9 +1,9 @@
-import { Bot, User2 } from "lucide-react";
+import { Bot, User2, GripHorizontal } from "lucide-react";
 import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { ApiLoader } from "../../../shared/components/apiLoader.jsx";
-const ChatMessage = ({ messages, isTyping = false }) => {
+const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
   const messagesEndRef = useRef(null);
   const messageRefs = useRef({});
 
@@ -198,6 +198,38 @@ const ChatMessage = ({ messages, isTyping = false }) => {
           </div>
         </div>
       )}
+
+      {/* //menu */}
+
+      <div
+        onClick={() => {
+          setslidestate(true);
+        }}
+        className="
+    sm:hidden
+   active:scale-90
+ top-10
+left-6    flex items-center justify-center
+
+    w-fit
+    rounded-full
+
+    border border-white/10
+    bg-white/5
+z-20
+  p-3
+  absolute
+
+    backdrop-blur-xl
+    shadow-lg shadow-black/20
+
+    transition-all duration-300
+    hover:bg-white/10
+    
+  "
+      >
+        <GripHorizontal size={22} className="text-zinc-300" />
+      </div>
 
       {/* Scroll anchor */}
       <div ref={messagesEndRef} />

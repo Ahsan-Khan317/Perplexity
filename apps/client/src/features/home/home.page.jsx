@@ -118,7 +118,7 @@ const HomePage = () => {
                         </p>
                       </div>
 
-                      <div className="border-t border-white/10 mt-1 pt-1 mt-1">
+                      <div className="border-t border-white/10  pt-1 mt-1">
                         <p className="text-[9px]">
                           All data gathered from latest news sources, official announcements and
                           tech publications.

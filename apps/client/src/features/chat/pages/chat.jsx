@@ -60,6 +60,7 @@ const Chat = () => {
           onclick={() => setslidestate(!slidestate)}
           active={active}
           setactive={setactive}
+          setslidestate={setslidestate}
         />
       </section>
     </main>

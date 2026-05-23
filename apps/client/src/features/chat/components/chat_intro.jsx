@@ -3,7 +3,7 @@ const Chatintro = (active) => {
     <div className="w-full  flex justify-center overflow-hidden items-end pb-10 px-4 ">
       <div className="text-center">
         {/* TITLE WRAPPER */}
-        <div className="relative   inline-block">
+        <div className="relative    inline-block">
           <h1
             className="
               relative
