@@ -77,14 +77,14 @@ const Login = () => {
           </div>
         </div>
 
-        <div className="text-right">
+        {/* <div className="text-right">
           <a
             href="/forgot-password"
             className="text-sm text-yellow-400 hover:text-yellow-300 transition"
           >
             Forgot Password?
           </a>
-        </div>
+        </div> */}
 
         <button
           disabled={isloading}

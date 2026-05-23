@@ -1,5 +1,4 @@
 import { lazy } from "react";
-
 import { createBrowserRouter, Navigate } from "react-router-dom";
 const Signup = lazy(() => import("../features/auth/pages/signup.jsx"));
 import Login from "../features/auth/pages/login.jsx";
@@ -7,7 +6,7 @@ import HomePage from "../features/home/home.page.jsx";
 const Chat = lazy(() => import("../features/chat/pages/chat.jsx"));
 const VerifyAccount = lazy(() => import("../features/auth/pages/verify_account.jsx"));
 import Protect_routes from "../features/auth/components/Authorization.jsx";
-import NotFound from "../shared/components/404.jsx";
+
 const AppRouter = (isAuthenticated) => {
   return createBrowserRouter([
     {
@@ -38,7 +37,7 @@ const AppRouter = (isAuthenticated) => {
     },
     {
       path: "*",
-      element: <NotFound />,
+      element: <HomePage />,
     },
   ]);
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../../../shared/components/logo.jsx";
+import { Link } from "react-router-dom";
 const AuthLayout = ({ title, subtitle, children, bottomText, bottomLinkText, bottomLinkHref }) => {
   return (
     <div className="min-h-screen bg-black relative overflow-hidden flex items-center justify-center px-4 py-10">
@@ -43,12 +44,12 @@ const AuthLayout = ({ title, subtitle, children, bottomText, bottomLinkText, bot
 
             <div className="mt-8 text-sm text-gray-400 text-center">
               {bottomText}{" "}
-              <a
-                href={bottomLinkHref}
+              <Link
+                to={bottomLinkHref}
                 className="text-yellow-400 hover:text-yellow-300 transition font-medium"
               >
                 {bottomLinkText}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
