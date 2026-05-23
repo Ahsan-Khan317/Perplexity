@@ -24,7 +24,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
     console.log(messages);
   }
   return (
-    <div className="w-full flex flex-col gap-6 px-3 sm:px-5 py-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
+    <div className="w-full flex flex-col gap-6 py-18  px-3 sm:px-5 sm:py-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
       {messages?.map((msg, index) => {
         const isAI = msg.role === "ai";
         const isLast = index === messages.length - 1;

@@ -30,7 +30,7 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
 
         <div
           ref={messagesRef}
-          className="flex flex-1 min-h-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent"
+          className="flex flex-1  min-h-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent"
         >
           {active ? (
             <ChatMessage messages={messages} setslidestate={setslidestate} />

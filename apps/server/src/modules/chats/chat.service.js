@@ -1,6 +1,6 @@
-import ApiError from "../../../shared/utils/apiError.js";
-import ChatDao from "../chat.dao.js";
-import { generate_AI_Response, generate_Title } from "./AI.service.js";
+import ApiError from "../../shared/utils/apiError.js";
+import ChatDao from "./chat.dao.js";
+import { generate_AI_Response, generate_Title } from "../AI/AI.service.js";
 
 const UseChatServices = () => {
   const Createchat = async (userid, question, chatid = "") => {
