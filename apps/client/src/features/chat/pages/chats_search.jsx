@@ -68,6 +68,7 @@ const ChatSearchPage = ({ showsearchpage, setshowsearchpage, titles, setslidesta
 
             h-full
             md:h-auto
+            md:max-h-[calc(100vh-4rem)]
 
             w-full
             max-w-3xl
@@ -88,6 +89,7 @@ const ChatSearchPage = ({ showsearchpage, setshowsearchpage, titles, setslidesta
 
             flex
             flex-col
+            min-h-0
           "
         >
           {/* Close Button */}
@@ -197,9 +199,11 @@ const ChatSearchPage = ({ showsearchpage, setshowsearchpage, titles, setslidesta
           {/* Chat List */}
           <div
             className="
+            scrollbar
               mt-6
 
               flex-1
+              min-h-0
 
               overflow-y-auto
               overscroll-contain
