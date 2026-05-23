@@ -1,6 +1,6 @@
 import asyncHandler from "../../shared/middleware/asyncHandler.js";
 import ApiResponse from "../../shared/utils/apiResponse.js";
-import UseCHatServices from "./services/chat.service.js";
+import UseCHatServices from "./chat.service.js";
 
 const ChatServices = UseCHatServices();
 
