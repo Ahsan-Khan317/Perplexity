@@ -208,7 +208,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
         className="
     sm:hidden
    active:scale-90
- top-18
+ top-21
 left-6    flex items-center justify-center
 
     w-fit
