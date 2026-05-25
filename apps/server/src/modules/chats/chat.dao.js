@@ -12,14 +12,22 @@ const ChatDao = {
   },
 
   findAllMessagesByCHatId: async (chatid) => {
-    return await messageModel.find({ chat: chatid });
+      const data =  await messageModel.find({ chat: chatid });
+ 
+     if(data.length >19) return data.slice(-19)
+      else{ return data}
   },
+
+
+
   createChat: async (userid, title) => {
     return await chatModel.create({
       user: userid,
       title,
     });
   },
+
+
 
   findAllChat: async (userid) => {
     return await chatModel.find({ user: userid });

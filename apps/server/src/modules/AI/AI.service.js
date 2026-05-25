@@ -5,6 +5,9 @@ import { HumanMessage, SystemMessage, AIMessage } from "@langchain/core/messages
 import { groqPrompt, research_toolPrompt, generate_TitlePrompt } from "./prompt.js";
 import { researchAgent } from "./agent.js";
 
+import { embed_docs,embedquery ,upsertdata } from "./rag/rag.services.js";
+import { personalContextKeywords,embed_system_message } from "./prompt.js";
+
 import * as z from "zod";
 
 //title_generator
@@ -22,8 +25,30 @@ export const generate_Title = async (content) => {
   }
 };
 
-export const generate_AI_Response = async (message) => {
+
+
+
+
+
+export const generate_AI_Response = async (message,userid) => {
   try {
+    
+
+
+const lastMessage = message[message.length-1].content;
+
+
+
+
+//important data stores in vector db
+const result = await upsertdata(lastMessage,userid)
+
+    
+
+
+
+
+
     const formatted_msg = [
       new SystemMessage(groqPrompt),
       ...message.map((msg) => {
@@ -36,6 +61,7 @@ export const generate_AI_Response = async (message) => {
     ];
 
     const response = await researchAgent.invoke({ messages: formatted_msg });
+    console.log("stage 3")
     return { content: response.messages.at(-1)?.content };
   } catch (error) {
     console.log(error);

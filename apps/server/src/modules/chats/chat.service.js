@@ -21,7 +21,7 @@ const UseChatServices = () => {
     const Allmessage = await ChatDao.findAllMessagesByCHatId(chatid || createchat._id);
     if (!Allmessage) throw new ApiError(403, " chat not fetched from database");
 
-    const AIMessage = await generate_AI_Response(Allmessage);
+    const AIMessage = await generate_AI_Response(Allmessage,userid);
     if (!AIMessage) throw new ApiError(500, "AI model failed to generate response");
 
     const create_Ai_message = await ChatDao.createMessage(
