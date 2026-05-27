@@ -37,7 +37,7 @@ export const generate_AI_Response = async (message,userid) => {
 
 
 const lastMessage = message[message.length-1].content;
-let embed_data,search ;
+let embed_data ;
 
 if(lastMessage.trim().length <30) {
 embed_data = await embedquery(lastMessage)
