@@ -37,7 +37,7 @@ export const generate_AI_Response = async (message,userid) => {
 
 
 const lastMessage = message[message.length-1].content;
-let embed_data ;
+let embed_data,search ;
 
 if(lastMessage.trim().length <30) {
 embed_data = await embedquery(lastMessage)
@@ -45,15 +45,17 @@ embed_data = await embedquery(lastMessage)
 
 }
 
-const search = await  retrieve_data(embed_data,userid)
+const [search] = await Promise.all([
+      retrieve_data(embed_data,userid),
 
 
 
 //important data stores in vector db
-const result = await upsertdata(lastMessage,userid,embed_data)
+ upsertdata(lastMessage,userid,embed_data)
 
     
 
+])
 
 
 
