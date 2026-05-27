@@ -10,7 +10,7 @@ import {index} from "./rag.model.config.js"
 //embedding
 export const embedquery = async(content)=>{
    
-    const embed_data = await embeddings.embedQuery(JSON.stringify(content))
+    const embed_data = await embeddings.embedQuery(content)
     return embed_data
 }
 
@@ -37,21 +37,34 @@ const splitter = new TokenTextSplitter({ encodingName: "cl100k_base", chunkSize:
 //upsert data
 
 
-export const upsertdata = async(lastMessage,userid)=>{
-const isPersonalData = personalContextKeywords.some((keywords)=>lastMessage.toLowerCase().includes(keywords))
 
+export const upsertdata = async(lastMessage,userid,embed_data)=>{
+const isPersonalData = personalContextKeywords.some((keywords)=>lastMessage.toLowerCase().includes(keywords))
 
     let records=[] ;
 
-   if(isPersonalData || lastMessage.split(" ").length >=50){
+
+
+
+
+
+
+
+
+
+   if(isPersonalData || lastMessage.trim().split(/\s+/).length >=150){
 
 let content = [lastMessage] ;
 
-if(lastMessage.split(" ").length >=50){
+
+if(lastMessage.trim().split(/\s+/).length >=150){
+
+
    const result =  await mistral_model.invoke([
   new SystemMessage(embed_system_message),
   new HumanMessage( lastMessage )
 ])
+
 
 if(result?.content.toLowerCase() == "false") return
  
@@ -61,19 +74,12 @@ if(result?.content.toLowerCase() == "false") return
 }
 
 
-
- 
-
+const embed =embed_data ?[embed_data] : await embed_docs(content);
 
 
 
 
-
-
-const embed = await embed_docs(content);
-
-
-
+if(embed.length >1){
 for (let i = 0; i < embed.length; i++) {
   records.push({
     id: crypto.randomUUID(),
@@ -82,15 +88,54 @@ for (let i = 0; i < embed.length; i++) {
   });
 }
 
+}
+else{
+
+
+records.push({
+    id: crypto.randomUUID(),
+    values: embed,
+    metadata: { userid, content: content[0] },
+  });
+
+
+
+}
+
+
  
+
+
+
+
+
+
  
 }
      
 
-    
-   
-   
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -110,11 +155,41 @@ console.log("pinecone upsert ok", {
 
 
 
+}
 
 
 
+
+
+export const retrieve_data =async (embed_data,userid)=>{
+
+    let search,result=[];
+
+if(embed_data){
+
+     search = await index?.query({
+vector:embed_data,
+topK:2,
+includeMetadata:true,
+includeValues:false,
+filter:{
+    userid:{$eq:userid}
+}
+
+
+    })
 
 
 
 }
 
+ search?.matches?.map((e,i)=>{
+result.push(e?.metadata?.content)
+
+ })
+
+ return result?JSON.stringify(result) :"no memory found in vector db so reply with system prompt command only"
+
+
+
+}
