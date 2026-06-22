@@ -117,11 +117,11 @@ setTitle()
   }, [navigate, isNavigating]);
 
   return (
-    <div className="min-h-dvh bg-black text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white relative overflow-y-auto overflow-x-hidden">
       {/* Background */}
       <div className="fixed inset-0 bg-linear-to-br from-yellow-400/10 via-yellow-500/5 to-transparent blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-3 sm:px-6 py-8 sm:py-12">
+      <div className="relative z-10 max-w-5xl mx-auto px-3 sm:px-6 py-8 sm:py-12 pt-20 sm:pt-12">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-5xl font-bold bg-linear-to-r from-yellow-300 to-amber-500 text-transparent bg-clip-text">

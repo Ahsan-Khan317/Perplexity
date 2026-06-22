@@ -169,7 +169,7 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
           <div className="relative p-6 rounded-2xl bg-black/50 border border-yellow-400/10">
             {/* Winner Badge */}
             {isWinner && (
-              <div className="absolute -top-3 right-4 px-4 py-1 bg-gradient-to-r from-yellow-400 to-amber-500 text-black text-xs font-bold rounded-full shadow-lg shadow-yellow-500/30 flex items-center gap-2">
+              <div className="absolute -top-3 right-4 px-4 py-1 bg-linear-to-r from-yellow-400 to-amber-500 text-black text-xs font-bold rounded-full shadow-lg shadow-yellow-500/30 flex items-center gap-2">
                 <Trophy className="w-3 h-3" />
                 Winner
               </div>
@@ -294,7 +294,7 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
                 </div>
 
                 {/* Winner Highlight */}
-                <div className="p-4 rounded-xl bg-gradient-to-r from-yellow-400/10 to-amber-500/10 border border-yellow-400/20">
+                <div className="p-4 rounded-xl bg-linear-to-r from-yellow-400/10 to-amber-500/10 border border-yellow-400/20">
                   <div className="flex items-center gap-3">
                     <Trophy className="w-6 h-6 text-yellow-400" />
                     <div>
@@ -359,7 +359,7 @@ const CustomSearchBar = ({ onSend, isLoading }) => {
     <div className="relative w-full bg-zinc-900/95 border border-yellow-400/20 rounded-[30px] backdrop-blur-2xl shadow-[0_0_40px_rgba(255,200,0,0.10)] px-4 py-3 transition-all duration-300">
       <div className="flex items-start gap-3">
         <div className="w-8 h-8 rounded-xl bg-zinc-800 border border-yellow-400/10 flex items-center justify-center shrink-0 relative overflow-hidden">
-          <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_3s_linear_infinite]" />
+          <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-linear-to-r from-transparent via-white/20 to-transparent animate-[shine_3s_linear_infinite]" />
           <span className="text-yellow-400 text-sm relative z-10">✦</span>
         </div>
 
@@ -380,7 +380,7 @@ const CustomSearchBar = ({ onSend, isLoading }) => {
         <div className="flex items-center gap-2">
           <button className="relative w-11 h-11 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-300 overflow-hidden hover:border-yellow-400/20 hover:text-yellow-400 hover:scale-105 active:scale-95 transition-all duration-300">
             <span className="absolute inset-0 bg-yellow-400/0 hover:bg-yellow-400/10 transition-all duration-300" />
-            <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[shine_4s_linear_infinite]" />
+            <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-linear-to-r from-transparent via-white/10 to-transparent animate-[shine_4s_linear_infinite]" />
             <Mic size={18} className="relative z-10" />
           </button>
         </div>
@@ -391,11 +391,11 @@ const CustomSearchBar = ({ onSend, isLoading }) => {
           <button
             onClick={handleSend}
             disabled={isLoading}
-            className={`relative h-11 w-11 cursor-pointer rounded-2xl bg-gradient-to-r from-[#FFD84D] to-[#FFBF00] text-black font-bold flex items-center justify-center shadow-lg shadow-yellow-500/20 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden ${
+            className={`relative h-11 w-11 cursor-pointer rounded-2xl bg-linear-to-r from-[#FFD84D] to-[#FFBF00] text-black font-bold flex items-center justify-center shadow-lg shadow-yellow-500/20 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden ${
               isLoading ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           >
-            <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shine_3s_linear_infinite]" />
+            <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-linear-to-r from-transparent via-white/30 to-transparent animate-[shine_3s_linear_infinite]" />
             <Send size={18} className="relative z-10" />
           </button>
         </div>
@@ -442,21 +442,42 @@ const AiBattle = () => {
   const showWelcome = !data && !isLoading;
 
   return (
-    <div className="h-screen bg-black text-white flex flex-col">
+    <div className="h-dvh bg-black text-white flex flex-col">
       {/* Header with Logo - No border */}
-      <div className="relative z-10 flex-shrink-0 px-4 pt-4 pb-3 bg-black">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Logo 
-            title="AI Battle Arena" 
-            desc="Watch AI models compete"
-            variant="zap"
-          />
-          <div className="flex items-center gap-3 text-xs text-zinc-500">
-            <span className="hidden sm:inline">⚡ Live</span>
-            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-          </div>
-        </div>
-      </div>
+     <div className="
+relative 
+z-10 
+flex 
+shrink-0 
+w-full
+px-4 
+pt-4 
+pb-3
+">
+
+  <div className="
+  w-full
+  max-w-6xl 
+  mx-auto
+  flex 
+  items-center 
+  justify-between
+  ">
+
+    <Logo 
+      title="AI Battle Arena"
+      desc="Watch AI models compete"
+      variant="zap"
+    />
+
+    <div className="flex items-center gap-3 text-xs text-zinc-500">
+      <span className="hidden sm:inline">⚡ Live</span>
+      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+    </div>
+
+  </div>
+
+</div>
 
       {/* Scrollable Content Area */}
       <div 
