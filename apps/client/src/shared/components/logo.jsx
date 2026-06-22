@@ -37,7 +37,7 @@ const Logo = ({ title, desc, variant = "default", onClick }) => {
   return (
     <div
       onClick={handleClick}
-      className="group relative flex cursor-pointer items-center gap-3 transition-all duration-300"
+      className="group relative top-3 flex cursor-pointer items-center gap-3 transition-all duration-300"
     >
       {/* Animated gradient background */}
       <div className="relative">
