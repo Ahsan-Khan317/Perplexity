@@ -11,10 +11,11 @@
   "author": "md ahsan khan",
   "license": "ISC",
   "dependencies": {
-    "@langchain/core": "^1.1.48",
+    "@langchain/core": "^1.2.0",
     "@langchain/google": "^0.1.11",
     "@langchain/google-genai": "^2.1.31",
     "@langchain/groq": "^1.2.0",
+    "@langchain/langgraph": "^1.4.4",
     "@langchain/mistralai": "^1.0.8",
     "@langchain/textsplitters": "^1.0.1",
     "@pinecone-database/pinecone": "^7.2.0",

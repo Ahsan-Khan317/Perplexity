@@ -140,7 +140,7 @@ records.push({
 
 
 if (records.length === 0) {
-    console.log("hello",records)
+    
     return
 };
 

@@ -35,7 +35,7 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
           {active ? (
             <ChatMessage messages={messages} setslidestate={setslidestate} />
           ) : (
-            <Chatintro active={active} />
+            <Chatintro active={active} setslidestate={setslidestate} />
           )}
         </div>
 

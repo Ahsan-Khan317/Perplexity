@@ -5,7 +5,7 @@ import { HumanMessage, SystemMessage, AIMessage } from "@langchain/core/messages
 import { groqPrompt, research_toolPrompt, generate_TitlePrompt } from "./prompt.js";
 import { researchAgent } from "./agent.js";
 
-import { embed_docs,embedquery ,upsertdata,retrieve_data } from "./rag/rag.services.js";
+import { embed_docs,embedquery ,upsertdata,retrieve_data } from "./rag/rag.service.js";
 import { personalContextKeywords,embed_system_message } from "./prompt.js";
 
 
@@ -37,7 +37,7 @@ export const generate_AI_Response = async (message,userid) => {
 
 
 const lastMessage = message[message.length-1].content;
-let embed_data,search ;
+let embed_data ;
 
 if(lastMessage.trim().length <30) {
 embed_data = await embedquery(lastMessage)

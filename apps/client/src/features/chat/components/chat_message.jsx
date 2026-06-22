@@ -202,13 +202,11 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
       {/* //menu */}
 
       <div
-        onClick={() => {
-          setslidestate(true);
-        }}
+        onClick={()=>{setslidestate(true)}}
         className="
     sm:hidden
    active:scale-90
- top-21
+ top-10
 left-6    flex items-center justify-center
 
     w-fit

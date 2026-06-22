@@ -1,4 +1,4 @@
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import "react-loading-skeleton/dist/skeleton.css";
 import { useEffect, Suspense, useMemo } from "react";
@@ -13,6 +13,7 @@ function App() {
   const { data, isAuthenticated } = useSelector((state) => state.Auth);
   const { get_me } = UseAuth();
   const { getAllChat } = UseChat();
+ 
   const Router = useMemo(() => AppRouter(isAuthenticated), [isAuthenticated]);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function App() {
         await getAllChat();
       } catch (err) {
         console.log(err);
+      
       }
     };
 

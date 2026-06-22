@@ -3,6 +3,7 @@ import { useState } from "react";
 import Chat_container from "../components/chat_container.jsx";
 import Logo from "../../../shared/components/logo.jsx";
 const ChatSearchPage = lazy(() => import("../pages/chats_search.jsx"));
+import { Brain } from "lucide-react";
 import {
   SquarePen,
   Search,
@@ -93,6 +94,18 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
           <span className="text-2xl">🔍</span> Search{" "}
         </button>
 
+
+<button
+          onClick={() => {
+            setactive("battle");
+
+            navigate("/ai_battle")
+          }}
+          className={`${active == "battle" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full not-sm:hidden hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
+        >
+          <span className="text-2xl">⚔️</span>    AI vs AI Battle
+        </button>
+
         {/* //for mobile */}
 
         <div className="flex gap-2 justify-center sm:hidden  items-center px-3 rounded-2xl bg-gray-900 text-white">
@@ -117,7 +130,47 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
             className="text-2xl active:scale-90"
           >
             🔍
-          </button>
+          </button>{" "}
+          |{" "}
+           <button
+  onClick={() => {
+    navigate("/ai_battle")
+  }}
+  aria-label="Open AI Battle"
+  className="
+    relative
+    flex
+    items-center
+    justify-center
+  
+    
+   
+    shadow-[0_0_15px_rgba(250,204,21,0.15)]
+    active:scale-90
+    transition-transform
+    duration-150
+  "
+>
+  <Brain
+    size={24}
+    color="#e8d44f"
+    strokeWidth={3}
+  />
+
+  <span
+    className="
+      absolute
+      -top-1
+      -right-1
+      w-2
+      h-2
+      rounded-full
+      bg-yellow-400
+      shadow-[0_0_8px_rgba(250,204,21,0.8)]
+    "
+  />
+</button>
+          
         </div>
       </div>
 
