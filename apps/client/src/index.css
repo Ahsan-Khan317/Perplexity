@@ -22,3 +22,12 @@ body {
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(253, 224, 71, 1);
 }
+/* Add to your global CSS */
+@layer utilities {
+  .pt-safe {
+    padding-top: env(safe-area-inset-top);
+  }
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

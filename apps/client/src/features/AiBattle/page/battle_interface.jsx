@@ -25,7 +25,6 @@ const WelcomeContent = ({titles}) => {
       description: "Watch AI models compete for the best answer"
     }
   ];
- 
 
   return (
     <div className="w-full max-w-6xl mx-auto mt-1">
@@ -41,7 +40,7 @@ const WelcomeContent = ({titles}) => {
         </div>
 
         {/* Welcome Text */}
-        <h2 className="text-3xl sm:text-4xl font-bold text-center bg-linear-to-r from-yellow-300 via-yellow-400 to-amber-500 text-transparent bg-clip-text mb-3">
+        <h2 className="text-3xl sm:text-4xl py-1 font-bold text-center bg-linear-to-r from-yellow-300 via-yellow-400 to-amber-500 text-transparent bg-clip-text mb-3">
           {`Welcome to AI ${titles || ""} Arena`}
         </h2>
         <p className="text-zinc-400 text-center max-w-md mb-10">
@@ -80,9 +79,8 @@ const WelcomeContent = ({titles}) => {
 const ResponseDisplay = ({ isLoading, userQuestion }) => {
   const [copied, setCopied] = useState(false);
   const [selectedSolution, setSelectedSolution] = useState("solution_1");
-  const { data,titles } = useSelector((state) => state.battle);
+  const { data, titles } = useSelector((state) => state.battle);
 
-  if(titles){console.log(titles)}
   if (isLoading) {
     return (
       <div className="w-full max-w-6xl mx-auto mt-8 p-8 rounded-2xl bg-black/50 border border-yellow-400/10">
@@ -100,7 +98,7 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
     );
   }
 
-  if (!data) return <WelcomeContent />;
+  if (!data) return <WelcomeContent titles={titles} />;
 
   const { question, solution_1, solution_2, judgement } = data.data;
   const currentSolution = selectedSolution === "solution_1" ? solution_1 : solution_2;
@@ -386,8 +384,6 @@ const CustomSearchBar = ({ onSend, isLoading }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          
-
           <button
             onClick={handleSend}
             disabled={isLoading}
@@ -418,7 +414,7 @@ const AiBattle = () => {
   const [showResponse, setShowResponse] = useState(true);
   const [userQuestion, setUserQuestion] = useState("");
   const contentRef = useRef(null);
-  const { data,titles } = useSelector((state) => state.battle);
+  const { data, titles } = useSelector((state) => state.battle);
 
   // Reset loading state when data arrives
   useEffect(() => {
@@ -442,49 +438,28 @@ const AiBattle = () => {
   const showWelcome = !data && !isLoading;
 
   return (
-    <div className="h-dvh bg-black text-white flex flex-col">
-      {/* Header with Logo - No border */}
-     <div className="
-relative 
-z-10 
-flex 
-shrink-0 
-w-full
-px-4 
-pt-4 
-pb-3
-">
-
-  <div className="
-  w-full
-  max-w-6xl 
-  mx-auto
-  flex 
-  items-center 
-  justify-between
-  ">
-
-    <Logo 
-      title="AI Battle Arena"
-      desc="Watch AI models compete"
-      variant="zap"
-    />
-
-    <div className="flex items-center gap-3 text-xs text-zinc-500">
-      <span className="hidden sm:inline">⚡ Live</span>
-      <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-    </div>
-
-  </div>
-
-</div>
+    <div className="h-screen sm:h-[100 dvh] pb-4   text-white flex flex-col overflow-X-hidden">
+      {/* Header with Logo - with safe area padding */}
+      <div className="relative z-10 flex shrink-0 w-full px-4 pt-safe  ">
+        <div className="w-full max-w-6xl mx-auto flex items-center py-2 justify-between">
+          <Logo 
+            title="AI Battle Arena"
+            desc="Watch AI models compete"
+            variant="zap"
+          />
+          <div className="flex items-center gap-3 text-xs text-zinc-500">
+            <span className="hidden sm:inline">⚡ Live</span>
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+          </div>
+        </div>
+      </div>
 
       {/* Scrollable Content Area */}
       <div 
         ref={contentRef}
         className="relative z-10 flex-1 overflow-y-auto px-4 py-4 scrollbar-thin scrollbar-thumb-yellow-400/20 scrollbar-track-transparent bg-black"
       >
-        {showWelcome && <WelcomeContent titles={titles || ""}/>}
+        {showWelcome && <WelcomeContent titles={titles || ""} />}
         {!showWelcome && (
           <ResponseDisplay 
             isLoading={isLoading} 
@@ -494,8 +469,8 @@ pb-3
         <div className="h-4"></div>
       </div>
 
-      {/* Custom Search Bar - Fixed at bottom, centered, larger on PC */}
-      <div className="relative z-10 flex justify-center shrink-0 px-4 pt-1 pb-16 sm:pb-4">
+      {/* Custom Search Bar - Fixed at bottom */}
+      <div className="relative z-10 flex justify-center shrink-0 px-4 pt-1 pb-safe sm:pb-4 bg-linear-to-t from-black via-black/95 to-transparent">
         <div className="max-w-4xl mx-auto w-full flex justify-center">
           <div className="w-full lg:w-full flex justify-center">
             <CustomSearchBar 

@@ -57,7 +57,7 @@ const Chat = () => {
         className="h-full flex-1 flex flex-col overflow-hidden p-2 text-white"
       >
         <Chat_section
-          // onclick={() => setslidestate(!slidestate)}
+          onclick={() => setslidestate(!slidestate)}
           active={active}
           setactive={setactive}
           setslidestate={setslidestate}

@@ -67,18 +67,17 @@ function SelectAIBattle() {
 
   // Update Redux when selected battle changes
   useEffect(() => {
-  
-const setTitle = async()=>{
-    if (selectedBattle && UsesetBattleTitle ) {
-     UsesetBattleTitle(selectedBattle);
-    }
-    
-}
-
-setTitle()
-
-
-
+    const setTitle = async () => {
+      if (selectedBattle && UsesetBattleTitle) {
+        try {
+          await UsesetBattleTitle(selectedBattle);
+          console.log("Battle title set:", selectedBattle);
+        } catch (error) {
+          console.error("Error setting battle title:", error);
+        }
+      }
+    };
+    setTitle();
   }, [selectedBattle, UsesetBattleTitle]);
 
   const handleBattleSelect = useCallback((battleName) => {
@@ -96,9 +95,7 @@ setTitle()
       // Set selected battle
       setSelectedBattle(battleName);
 
-     
-      
-      // Use replace to prevent back button issues
+      // Navigate to battle arena
       navigate("/ai_battle_arena", { replace: true });
 
     } catch (error) {
@@ -110,37 +107,36 @@ setTitle()
       setTimeout(() => {
         if (isMounted.current) {
           processing.current = false;
-          // Don't reset isNavigating here as it might cause issues
         }
       }, 1000);
     }
   }, [navigate, isNavigating]);
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-y-auto overflow-x-hidden">
+    <div className="h-screen bg-black text-white relative overflow-y-auto overflow-x-hidden">
       {/* Background */}
       <div className="fixed inset-0 bg-linear-to-br from-yellow-400/10 via-yellow-500/5 to-transparent blur-3xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-3 sm:px-6 py-8 sm:py-12 pt-20 sm:pt-12">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-5xl font-bold bg-linear-to-r from-yellow-300 to-amber-500 text-transparent bg-clip-text">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold bg-linear-to-r from-yellow-300 to-amber-500 text-transparent bg-clip-text">
             Choose AI Battle
           </h1>
-          <p className="mt-3 text-zinc-400 text-xs sm:text-base">
+          <p className="mt-2 text-zinc-400 text-xs sm:text-sm">
             Select battlefield and watch AI compete
           </p>
         </div>
 
         {/* Battle Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           {battles.map((battle) => (
             <button
               key={battle.name}
               onClick={() => handleBattleSelect(battle.name)}
               disabled={isNavigating || processing.current}
               className={`
-                relative rounded-xl border p-3 sm:p-5 text-left
+                relative rounded-xl border p-3 sm:p-4 text-left
                 bg-linear-to-br from-yellow-500/10 to-black
                 border-yellow-500/20 cursor-pointer
                 hover:border-yellow-400
@@ -155,7 +151,7 @@ setTitle()
                 {battle.icon}
               </div>
 
-              <h2 className="mt-2 font-semibold text-xs sm:text-base text-zinc-100">
+              <h2 className="mt-2 font-semibold text-xs sm:text-sm text-zinc-100">
                 {battle.name}
               </h2>
 
@@ -167,20 +163,20 @@ setTitle()
         </div>
 
         {/* Footer Stats */}
-        <div className="mt-12 flex justify-center gap-8 text-center text-xs text-zinc-500">
+        <div className="mt-8 sm:mt-12 pb-4 flex justify-center gap-6 sm:gap-8 text-center text-xs text-zinc-500">
           <div>
-            <p className="text-yellow-400 font-bold text-lg">9</p>
-            Battles
+            <p className="text-yellow-400 font-bold text-lg sm:text-xl">9</p>
+            <span className="text-[10px] sm:text-xs">Battles</span>
           </div>
 
           <div>
-            <p className="text-yellow-400 font-bold text-lg">⚡</p>
-            Realtime
+            <p className="text-yellow-400 font-bold text-lg sm:text-xl">⚡</p>
+            <span className="text-[10px] sm:text-xs">Realtime</span>
           </div>
 
           <div>
-            <p className="text-yellow-400 font-bold text-lg">🏆</p>
-            Champion
+            <p className="text-yellow-400 font-bold text-lg sm:text-xl">🏆</p>
+            <span className="text-[10px] sm:text-xs">Champion</span>
           </div>
         </div>
       </div>
