@@ -20,9 +20,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
       hour12: true,
     });
   };
-  {
-    console.log(messages);
-  }
+  
   return (
     <div className="w-full flex flex-col gap-6 pt-4 px-3 sm:px-5 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
       {messages?.map((msg, index) => {
