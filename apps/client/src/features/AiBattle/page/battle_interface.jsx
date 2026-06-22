@@ -438,9 +438,9 @@ const AiBattle = () => {
   const showWelcome = !data && !isLoading;
 
   return (
-    <div className="h-screen sm:h-[100 dvh] pb-4   text-white flex flex-col overflow-X-hidden">
+    <div className="h-dvh p-4 sm:p-8 text-white flex flex-col overflow-hidden bg-black">
       {/* Header with Logo - with safe area padding */}
-      <div className="relative z-10 flex shrink-0 w-full px-4 pt-safe  ">
+      <div className="relative z-10 flex shrink-0 w-full px-4 pt-safe pb-2">
         <div className="w-full max-w-6xl mx-auto flex items-center py-2 justify-between">
           <Logo 
             title="AI Battle Arena"

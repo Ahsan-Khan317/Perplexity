@@ -113,7 +113,7 @@ function SelectAIBattle() {
   }, [navigate, isNavigating]);
 
   return (
-    <div className="h-screen bg-black text-white relative overflow-y-auto overflow-x-hidden">
+    <div className="h-dvh p-4 sm:p-8 bg-black text-white relative overflow-y-auto overflow-x-hidden">
       {/* Background */}
       <div className="fixed inset-0 bg-linear-to-br from-yellow-400/10 via-yellow-500/5 to-transparent blur-3xl pointer-events-none" />
 

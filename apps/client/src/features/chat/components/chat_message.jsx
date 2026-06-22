@@ -1,4 +1,4 @@
-import { Bot, User2, GripHorizontal } from "lucide-react";
+import { Bot, User2 } from "lucide-react";
 import { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -24,7 +24,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
     console.log(messages);
   }
   return (
-    <div className="w-full flex flex-col gap-6 pt-20   px-3 sm:px-5 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
+    <div className="w-full flex flex-col gap-6 pt-4 px-3 sm:px-5 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
       {messages?.map((msg, index) => {
         const isAI = msg.role === "ai";
         const isLast = index === messages.length - 1;
@@ -86,7 +86,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
                       px-5 py-4
                       text-zinc-100 text-[15px] leading-relaxed
                       shadow-xl
-                      scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent
+                      scrollbar
                       transition-all duration-200
                       hover:border-zinc-700/50
                     "
@@ -136,7 +136,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
                       px-5 py-4
                       text-zinc-100 text-[15px] leading-relaxed
                       shadow-lg
-                      scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent
+                      scrollbar
                       transition-all duration-200
                       hover:border-yellow-400/40
                       hover:shadow-yellow-500/10
@@ -199,35 +199,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
         </div>
       )}
 
-      {/* //menu */}
 
-      <div
-        onClick={()=>{setslidestate(true)}}
-        className="
-    sm:hidden
-   active:scale-90
- top-22
-left-6    flex items-center justify-center
-
-    w-fit
-    rounded-full
-
-    border border-white/10
-    bg-white/5
-z-20
-  p-3
-  absolute
-
-    backdrop-blur-xl
-    shadow-lg shadow-black/20
-
-    transition-all duration-300
-    hover:bg-white/10
-    
-  "
-      >
-        <GripHorizontal size={22} className="text-zinc-300" />
-      </div>
 
       {/* Scroll anchor */}
       <div ref={messagesEndRef} />
@@ -260,33 +232,6 @@ z-20
         
         .animate-shine {
           animation: shine 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        /* Smooth scrolling for message containers */
-        .overflow-y-auto {
-          scroll-behavior: smooth;
-        }
-        
-        /* Custom scrollbar - Tailwind v4 style */
-        .scrollbar-thin {
-          scrollbar-width: thin;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar {
-          width: 4px;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: rgba(63, 63, 70, 0.5);
-          border-radius: 20px;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background: rgba(63, 63, 70, 0.8);
         }
         
         /* Tailwind v4 prose overrides */

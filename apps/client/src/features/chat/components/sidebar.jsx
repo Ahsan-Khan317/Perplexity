@@ -56,7 +56,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
       onTouchEnd={(e) => {
         handleEnd(e);
       }}
-      className={`h-full pt-3 sm:pt-9 w-full fixed z-30 md:relative bg-black top-0 left-0  md:w-[18%] transition-all duration-200 gap-2 ${slidestate ? "not-sm:translate-x-0" : "not-sm:-translate-x-full"} flex flex-col justify-start items-center border-r border-r-amber-50 `}
+      className={`h-full pt-3 sm:pt-9 w-full fixed z-30 md:relative bg-black top-0 left-0  md:w-[18%] transition-all duration-200 gap-2 ${slidestate ? "max-md:translate-x-0" : "max-md:-translate-x-full"} flex flex-col justify-start items-center border-r border-r-amber-50 `}
     >
       <ChatSearchPage
         setshowsearchpage={setshowsearchpage}
@@ -67,7 +67,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
       />
 
       {/* //upper part of sidebar */}
-      <div className="flex  sm:flex-col gap-5 justify-between sm:justify-start w-full px-4 ">
+      <div className="flex  sm:flex-col gap-5 justify-between sm:justify-start w-full px-4 pt-4 sm:pt-6">
         <Logo />
 
         {/* //for pc */}
@@ -78,7 +78,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
             const res = newChat();
             if (res) return navigate("/chat");
           }}
-          className={` ${active == "newchat" ? "bg-amber-300 text-gray-700" : ""} rounded-2xl   text-amber-50 flex justify-start sm:text-sm gap-2 cursor-pointer px-2 items-center w-full not-sm:hidden  hover:bg-amber-200 hover:text-gray-700 active:scale-90 p-1 hover:rounded-2xl `}
+          className={` ${active == "newchat" ? "bg-amber-300 text-gray-700" : ""} rounded-2xl   text-amber-50 hidden sm:flex justify-start sm:text-sm gap-2 cursor-pointer px-2 items-center w-full  hover:bg-amber-200 hover:text-gray-700 active:scale-90 p-1 hover:rounded-2xl `}
         >
           <span className="text-2xl">📝</span> New Chat{" "}
         </button>
@@ -89,7 +89,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
 
             setshowsearchpage(true);
           }}
-          className={`${active == "search" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full not-sm:hidden hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
+          className={`${active == "search" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl hidden sm:flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
         >
           <span className="text-2xl">🔍</span> Search{" "}
         </button>
@@ -101,7 +101,7 @@ const Sidebar = ({ slidestate, setslidestate, intro, setintro }) => {
 
             navigate("/ai_battle")
           }}
-          className={`${active == "battle" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full not-sm:hidden hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
+          className={`${active == "battle" ? "bg-amber-300 text-gray-700" : ""} text-amber-50 rounded-2xl hidden sm:flex justify-start sm:text-md gap-2 cursor-pointer px-2 items-center w-full hover:bg-amber-200 p-1 hover:text-gray-700 hover:rounded-2xl active:scale-90`}
         >
           <span className="text-2xl">⚔️</span>    AI vs AI Battle
         </button>

@@ -11,7 +11,7 @@ const HomePage = () => {
   const { isAuthenticated } = useSelector((state) => state.Auth);
 
   return (
-    <div className="h-screen bg-[#0b1120] text-white overflow-hidden relative">
+    <div className="h-dvh p-4 sm:p-6 bg-[#0b1120] text-white overflow-hidden relative flex flex-col">
       {/* Background Glow */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-yellow-400/10 blur-[120px]" />
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-blue-500/10 blur-[120px]" />
@@ -44,7 +44,7 @@ const HomePage = () => {
 
       {/* ================= HERO SECTION ================= */}
 
-      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-[calc(100vh-120px)] sm:h-[calc(100vh-72px)] flex items-center">
+      <section className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 flex-1 flex items-center">
         <div className="grid lg:grid-cols-2 gap-10 items-center w-full">
           {/* ================= LEFT CONTENT ================= */}
 

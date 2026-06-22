@@ -68,7 +68,7 @@ const ChatSearchPage = ({ showsearchpage, setshowsearchpage, titles, setslidesta
 
             h-full
             md:h-auto
-            md:max-h-[calc(100vh-4rem)]
+            md:max-h-[calc(100dvh-4rem)]
 
             w-full
             max-w-3xl

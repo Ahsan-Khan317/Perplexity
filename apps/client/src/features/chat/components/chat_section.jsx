@@ -1,10 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Zap, Sparkles } from "lucide-react";
+import { GripHorizontal } from "lucide-react";
 import SearchBar from "./searchbar.jsx";
-import Logo from "../../../shared/components/logo.jsx";
 import Chatintro from "./chat_intro.jsx";
 import ChatMessage from "./chat_message.jsx";
-import UseChat from "../UseChat.js";
 import { useSelector } from "react-redux";
 
 const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
@@ -23,62 +21,41 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
   }, [messages]);
 
   return (
-    <>
-      {/* Chat Middle Section */}
-      <div className="flex flex-1 flex-col min-h-0 justify-start ">
-        {/* Chat Messages Area */}
+    <div className="flex flex-1 flex-col min-h-0">
 
-        <div
-          ref={messagesRef}
-          className="flex flex-1 pt-2 min-h-0 overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-zinc-700 scrollbar-track-transparent"
+      {/* Mobile Header Bar - icon only, no extra text */}
+      <div className="sm:hidden flex items-center px-1 py-2 shrink-0">
+        <button
+          onClick={onclick}
+          className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-300 hover:text-white active:scale-95 transition-all duration-200"
+          aria-label="Toggle sidebar"
         >
-          {active ? (
-            <ChatMessage messages={messages} setslidestate={setslidestate} />
-          ) : (
-            <Chatintro active={active} setslidestate={setslidestate} />
-          )}
-        </div>
-
-        {/* Search Bar Area */}
-        <div
-          className={`
-          ${active ? "min-h-auto  pb-1 items-end" : "flex-1  items-start"}
-          flex justify-center transition-all duration-300
-        `}
-        >
-          <SearchBar active={active} setactive={setactive} />
-        </div>
+          <GripHorizontal size={20} />
+        </button>
       </div>
 
-      {/* Custom Scrollbar Styles */}
-      <style>{`
-        @keyframes shine {
-          0% { left: -120%; }
-          100% { left: 150%; }
-        }
-        
-        .scrollbar-thin {
-          scrollbar-width: thin;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar {
-          width: 4px;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-thumb {
-          background: rgba(63, 63, 70, 0.5);
-          border-radius: 20px;
-        }
-        
-        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-          background: rgba(63, 63, 70, 0.8);
-        }
-      `}</style>
-    </>
+      {/* Chat Messages Area */}
+      <div
+        ref={messagesRef}
+        className="flex flex-1 min-h-0 overflow-y-auto overscroll-contain scrollbar"
+      >
+        {active ? (
+          <ChatMessage messages={messages} setslidestate={setslidestate} />
+        ) : (
+          <Chatintro active={active} setslidestate={setslidestate} />
+        )}
+      </div>
+
+      {/* Search Bar Area */}
+      <div
+        className={`
+          ${active ? "shrink-0 pb-1 items-end" : "flex-1 items-start"}
+          flex justify-center transition-all duration-300
+        `}
+      >
+        <SearchBar active={active} setactive={setactive} />
+      </div>
+    </div>
   );
 };
 

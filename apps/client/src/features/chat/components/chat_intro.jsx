@@ -1,50 +1,7 @@
-import { GripHorizontal } from "lucide-react";
 
 const Chatintro = ({ active, setslidestate }) => {
   return (
     <div className="w-full flex justify-center overflow-hidden items-end pb-10 px-4 relative">
-
-      {/* Mobile Menu Button */}
-      <div
-        onClick={() => {
-          setslidestate(true);
-        }}
-        className="
-          sm:hidden
-          active:scale-90
-          top-2
-          left-6
-          flex 
-          items-center 
-          justify-center
-
-          w-fit
-          rounded-full
-
-          border 
-          border-white/10
-
-          bg-white/5
-
-          z-20
-          p-3
-
-          absolute
-
-          backdrop-blur-xl
-
-          shadow-lg 
-          shadow-black/20
-
-          transition-all 
-          duration-300
-        "
-      >
-        <GripHorizontal 
-          size={22} 
-          className="text-zinc-300"
-        />
-      </div>
 
 
 
