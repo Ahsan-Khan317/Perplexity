@@ -7,7 +7,7 @@ import UseAuth from "../useAuth.jsx";
 import { useSelector } from "react-redux";
 import { ApiLoader } from "../../../shared/components/apiLoader.jsx";
 import { useNavigate } from "react-router-dom";
-
+import Google_button from "../components/google_button.jsx";
 const Signup = () => {
   const { signup } = UseAuth();
   const { isloading } = useSelector((state) => state.Auth);
@@ -109,6 +109,8 @@ const Signup = () => {
         >
           Create Account
         </button>
+
+        <Google_button />
       </form>
     </AuthLayout>
   );
