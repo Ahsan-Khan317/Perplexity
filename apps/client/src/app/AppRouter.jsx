@@ -26,11 +26,11 @@ const AppRouter = (isAuthenticated) => {
     {
       path: "/chat",
       element: (
-        // <Protect_routes>
+         <Protect_routes>
           
-        //   <Chat />
-        // </Protect_routes>
-        <Chat/>
+           <Chat />
+         </Protect_routes>
+        
       ),
     },
 
