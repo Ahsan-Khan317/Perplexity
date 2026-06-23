@@ -24,10 +24,10 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
     <div className="flex flex-1 flex-col min-h-0">
 
       {/* Mobile Header Bar - icon only, no extra text */}
-      <div className="sm:hidden flex items-center px-1 py-2 shrink-0">
+      <div className="sm:hidden flex items-center px-1 pt-3 ">
         <button
           onClick={onclick}
-          className="px-2.5 pt-4 pb-2 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-300 hover:text-white active:scale-95 transition-all duration-200"
+          className="p-2.5  rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-300 hover:text-white active:scale-95 transition-all duration-200"
           aria-label="Toggle sidebar"
         >
           <GripHorizontal size={20} />
