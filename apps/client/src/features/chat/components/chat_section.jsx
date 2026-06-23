@@ -24,7 +24,7 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
     <div className="flex flex-1 flex-col min-h-0">
 
       {/* Mobile Header Bar - icon only, no extra text */}
-      <div className="sm:hidden flex items-center px-1 pt-3 ">
+      <div className="sm:hidden flex items-center px-1 relative top-20 left-10 ">
         <button
           onClick={onclick}
           className="p-2.5  rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-300 hover:text-white active:scale-95 transition-all duration-200"
