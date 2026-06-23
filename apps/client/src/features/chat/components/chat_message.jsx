@@ -20,9 +20,9 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
       hour12: true,
     });
   };
-  
+
   return (
-    <div className="w-full flex flex-col gap-6 pt-4 px-3 sm:px-5 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
+    <div className="w-full flex flex-col gap-6 px-3 sm:px-5 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
       {messages?.map((msg, index) => {
         const isAI = msg.role === "ai";
         const isLast = index === messages.length - 1;
@@ -196,8 +196,6 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
           </div>
         </div>
       )}
-
-
 
       {/* Scroll anchor */}
       <div ref={messagesEndRef} />

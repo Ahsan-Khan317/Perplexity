@@ -21,18 +21,16 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
   }, [messages]);
 
   return (
-    <div className="flex flex-1 flex-col min-h-0">
-
+    <div className="flex flex-1 flex-col  bg-linear-to-b from-zinc-950 to-black ">
       {/* Mobile Header Bar - icon only, no extra text */}
-      
-        <button
-          onClick={onclick}
-          className="p-2.5  sm:hidden relative z-20 top-10 left-5 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-300 hover:text-white active:scale-95 transition-all duration-200"
-          aria-label="Toggle sidebar"
-        >
-          <GripHorizontal size={20} />
-        </button>
-      
+
+      <button
+        onClick={onclick}
+        className="p-2.5  sm:hidden relative z-20 top-9.5 left-3.5 size-10 rounded-xl bg-zinc-900 border border-zinc-800/80 text-zinc-300 hover:text-white active:scale-95 transition-all duration-200"
+        aria-label="Toggle sidebar"
+      >
+        <GripHorizontal size={20} />
+      </button>
 
       {/* Chat Messages Area */}
       <div
