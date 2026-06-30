@@ -22,7 +22,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
   };
 
   return (
-    <div className="w-full flex scrollbar  flex-col gap-6 px-3 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
+    <div className="w-full flex scrollbar  flex-col gap-6 px-3 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-auto">
       {messages?.map((msg, index) => {
         const isAI = msg.role === "ai";
         const isLast = index === messages.length - 1;
@@ -65,7 +65,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
                 </div>
 
                 {/* AI TEXT with typing animation for current message */}
-                <div className="flex flex-col gap-1 max-w-[85%] sm:max-w-[75%]">
+                <div className="flex flex-col gap-1 min-w-0 max-w-[85%] sm:max-w-[75%]">
                   <div className="flex items-center gap-2 px-1">
                     <span className="text-xs font-medium text-yellow-400/80">Perplex AI</span>
                     <span className="text-[10px] text-zinc-500">{formatTime(msg?.createdAt)}</span>
@@ -104,7 +104,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
                         />
                       </div>
                     ) : (
-                      <div className="prose prose-invert prose-sm max-w-none">
+                      <div className="prose prose-invert prose-sm pb-2 sm:pb-0 overflow-x-auto max-w-none">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>{msg?.content}</ReactMarkdown>
                       </div>
                     )}

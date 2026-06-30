@@ -2,28 +2,46 @@ import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import Logo from "../../../shared/components/logo.jsx";
-import { Copy, Check, ThumbsUp, ThumbsDown, Sparkles, Trophy, Clock, FileText, Brain, Zap, Send, Mic, MessageCircle, ArrowRight, Lightbulb, Target, Users } from "lucide-react";
+import {
+  Copy,
+  Check,
+  ThumbsUp,
+  ThumbsDown,
+  Sparkles,
+  Trophy,
+  Clock,
+  FileText,
+  Brain,
+  Zap,
+  Send,
+  Mic,
+  MessageCircle,
+  ArrowRight,
+  Lightbulb,
+  Target,
+  Users,
+} from "lucide-react";
 import UseAIBAttle from "../UseAIBattle.js";
 import { useSelector } from "react-redux";
 
 // Initial Welcome Content
-const WelcomeContent = ({titles}) => {
+const WelcomeContent = ({ titles }) => {
   const suggestions = [
     {
       icon: <Lightbulb className="w-5 h-5 text-yellow-400" />,
       title: "Ask Anything",
-      description: "Get answers from AI models"
+      description: "Get answers from AI models",
     },
     {
       icon: <Target className="w-5 h-5 text-yellow-400" />,
       title: "Compare Results",
-      description: "See how different AI models perform"
+      description: "See how different AI models perform",
     },
     {
       icon: <Users className="w-5 h-5 text-yellow-400" />,
       title: "AI Battle",
-      description: "Watch AI models compete for the best answer"
-    }
+      description: "Watch AI models compete for the best answer",
+    },
   ];
 
   return (
@@ -50,14 +68,12 @@ const WelcomeContent = ({titles}) => {
         {/* Feature Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl">
           {suggestions.map((item, index) => (
-            <div 
+            <div
               key={index}
               className="p-4 rounded-xl bg-black/50 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/10"
             >
               <div className="flex flex-col items-center text-center gap-2">
-                <div className="p-2 rounded-lg bg-yellow-400/10">
-                  {item.icon}
-                </div>
+                <div className="p-2 rounded-lg bg-yellow-400/10">{item.icon}</div>
                 <h4 className="text-zinc-200 font-semibold text-sm">{item.title}</h4>
                 <p className="text-zinc-500 text-xs">{item.description}</p>
               </div>
@@ -90,9 +106,7 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
             <Sparkles className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 text-yellow-400 animate-pulse" />
           </div>
           <p className="mt-6 text-zinc-400 text-sm">AI is analyzing your question...</p>
-          {userQuestion && (
-            <p className="mt-2 text-zinc-500 text-xs">"{userQuestion}"</p>
-          )}
+          {userQuestion && <p className="mt-2 text-zinc-500 text-xs">"{userQuestion}"</p>}
         </div>
       </div>
     );
@@ -174,39 +188,83 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
             )}
 
             {/* Markdown Content */}
-            <div className="prose prose-invert max-w-none">
+            <div className="prose prose-invert max-w-none overflow-x-auto scrollbar">
               <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                  h1: ({ node, ...props }) => <h1 className="text-2xl font-bold text-yellow-300 mt-6 mb-4" {...props} />,
-                  h2: ({ node, ...props }) => <h2 className="text-xl font-bold text-yellow-300 mt-5 mb-3" {...props} />,
-                  h3: ({ node, ...props }) => <h3 className="text-lg font-bold text-yellow-300 mt-4 mb-2" {...props} />,
-                  h4: ({ node, ...props }) => <h4 className="text-base font-bold text-yellow-300 mt-3 mb-2" {...props} />,
-                  p: ({ node, ...props }) => <p className="text-zinc-200 text-sm leading-relaxed mb-3" {...props} />,
-                  ul: ({ node, ...props }) => <ul className="list-disc list-inside space-y-1 mb-3 text-zinc-200" {...props} />,
-                  ol: ({ node, ...props }) => <ol className="list-decimal list-inside space-y-1 mb-3 text-zinc-200" {...props} />,
+                  h1: ({ node, ...props }) => (
+                    <h1 className="text-2xl font-bold text-yellow-300 mt-6 mb-4" {...props} />
+                  ),
+                  h2: ({ node, ...props }) => (
+                    <h2 className="text-xl font-bold text-yellow-300 mt-5 mb-3" {...props} />
+                  ),
+                  h3: ({ node, ...props }) => (
+                    <h3 className="text-lg font-bold text-yellow-300 mt-4 mb-2" {...props} />
+                  ),
+                  h4: ({ node, ...props }) => (
+                    <h4 className="text-base font-bold text-yellow-300 mt-3 mb-2" {...props} />
+                  ),
+                  p: ({ node, ...props }) => (
+                    <p className="text-zinc-200 text-sm leading-relaxed mb-3" {...props} />
+                  ),
+                  ul: ({ node, ...props }) => (
+                    <ul className="list-disc list-inside space-y-1 mb-3 text-zinc-200" {...props} />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ol
+                      className="list-decimal list-inside space-y-1 mb-3 text-zinc-200"
+                      {...props}
+                    />
+                  ),
                   li: ({ node, ...props }) => <li className="text-sm leading-relaxed" {...props} />,
-                  strong: ({ node, ...props }) => <strong className="text-yellow-300 font-bold" {...props} />,
+                  strong: ({ node, ...props }) => (
+                    <strong className="text-yellow-300 font-bold" {...props} />
+                  ),
                   em: ({ node, ...props }) => <em className="text-zinc-300 italic" {...props} />,
-                  code: ({ node, inline, ...props }) => 
+                  code: ({ node, inline, ...props }) =>
                     inline ? (
-                      <code className="bg-zinc-800/50 px-2 py-0.5 rounded text-yellow-300 text-sm" {...props} />
+                      <code
+                        className="bg-zinc-800/50 px-2 py-0.5 rounded text-yellow-300 text-sm"
+                        {...props}
+                      />
                     ) : (
-                      <code className="block bg-zinc-800/50 p-4 rounded-xl text-yellow-300 text-sm overflow-x-auto" {...props} />
+                      <code
+                        className="block bg-zinc-800/50 p-4 rounded-xl text-yellow-300 text-sm overflow-x-auto"
+                        {...props}
+                      />
                     ),
                   blockquote: ({ node, ...props }) => (
-                    <blockquote className="border-l-4 border-yellow-400/30 pl-4 py-2 my-3 bg-yellow-400/5 rounded-r-xl" {...props} />
+                    <blockquote
+                      className="border-l-4 border-yellow-400/30 pl-4 py-2 my-3 bg-yellow-400/5 rounded-r-xl"
+                      {...props}
+                    />
                   ),
-                  a: ({ node, ...props }) => <a className="text-yellow-400 hover:text-yellow-300 underline" {...props} />,
-                  hr: ({ node, ...props }) => <hr className="border-yellow-400/20 my-4" {...props} />,
+                  a: ({ node, ...props }) => (
+                    <a className="text-yellow-400 hover:text-yellow-300 underline" {...props} />
+                  ),
+                  hr: ({ node, ...props }) => (
+                    <hr className="border-yellow-400/20 my-4" {...props} />
+                  ),
                   table: ({ node, ...props }) => (
                     <div className="overflow-x-auto my-3">
                       <table className="min-w-full border-collapse" {...props} />
                     </div>
                   ),
-                  th: ({ node, ...props }) => <th className="border border-yellow-400/20 px-3 py-2 text-left text-yellow-300 font-bold" {...props} />,
-                  td: ({ node, ...props }) => <td className="border border-yellow-400/20 px-3 py-2 text-zinc-200" {...props} />,
-                  img: ({ node, ...props }) => <img className="max-w-full rounded-xl my-3" {...props} />,
+                  th: ({ node, ...props }) => (
+                    <th
+                      className="border border-yellow-400/20 px-3 py-2 text-left text-yellow-300 font-bold"
+                      {...props}
+                    />
+                  ),
+                  td: ({ node, ...props }) => (
+                    <td
+                      className="border border-yellow-400/20 px-3 py-2 text-zinc-200"
+                      {...props}
+                    />
+                  ),
+                  img: ({ node, ...props }) => (
+                    <img className="max-w-full rounded-xl my-3" {...props} />
+                  ),
                 }}
               >
                 {currentSolution.content}
@@ -255,7 +313,9 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
               <div className="space-y-4">
                 {/* Solution 1 Scores */}
                 <div className="p-4 rounded-xl bg-zinc-800/30">
-                  <p className="text-zinc-400 text-xs uppercase tracking-wider mb-2">AI Model 1 Scores</p>
+                  <p className="text-zinc-400 text-xs uppercase tracking-wider mb-2">
+                    AI Model 1 Scores
+                  </p>
                   <div className="space-y-1">
                     {Object.entries(judgement?.solution_1_score || {}).map(([key, value]) => (
                       <div key={key} className="flex justify-between text-sm">
@@ -268,7 +328,9 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
 
                 {/* Solution 2 Scores */}
                 <div className="p-4 rounded-xl bg-zinc-800/30">
-                  <p className="text-zinc-400 text-xs uppercase tracking-wider mb-2">AI Model 2 Scores</p>
+                  <p className="text-zinc-400 text-xs uppercase tracking-wider mb-2">
+                    AI Model 2 Scores
+                  </p>
                   <div className="space-y-1">
                     {Object.entries(judgement?.solution_2_score || {}).map(([key, value]) => (
                       <div key={key} className="flex justify-between text-sm">
@@ -282,11 +344,15 @@ const ResponseDisplay = ({ isLoading, userQuestion }) => {
                 {/* Reasoning */}
                 <div className="space-y-2">
                   <div className="p-3 rounded-xl bg-zinc-800/20">
-                    <p className="text-zinc-400 text-xs uppercase tracking-wider mb-1">Solution 1 Reasoning</p>
+                    <p className="text-zinc-400 text-xs uppercase tracking-wider mb-1">
+                      Solution 1 Reasoning
+                    </p>
                     <p className="text-zinc-300 text-sm">{judgement?.solution_1_reasoning}</p>
                   </div>
                   <div className="p-3 rounded-xl bg-zinc-800/20">
-                    <p className="text-zinc-400 text-xs uppercase tracking-wider mb-1">Solution 2 Reasoning</p>
+                    <p className="text-zinc-400 text-xs uppercase tracking-wider mb-1">
+                      Solution 2 Reasoning
+                    </p>
                     <p className="text-zinc-300 text-sm">{judgement?.solution_2_reasoning}</p>
                   </div>
                 </div>
@@ -388,7 +454,7 @@ const CustomSearchBar = ({ onSend, isLoading }) => {
             onClick={handleSend}
             disabled={isLoading}
             className={`relative h-11 w-11 cursor-pointer rounded-2xl bg-linear-to-r from-[#FFD84D] to-[#FFBF00] text-black font-bold flex items-center justify-center shadow-lg shadow-yellow-500/20 hover:scale-105 active:scale-95 transition-all duration-300 overflow-hidden ${
-              isLoading ? 'opacity-50 cursor-not-allowed' : ''
+              isLoading ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
             <span className="absolute top-0 -left-full w-[120%] h-full rotate-12 bg-linear-to-r from-transparent via-white/30 to-transparent animate-[shine_3s_linear_infinite]" />
@@ -442,11 +508,7 @@ const AiBattle = () => {
       {/* Header with Logo - with safe area padding */}
       <div className="relative z-10 flex shrink-0 w-full px-4 pt-safe pb-2">
         <div className="w-full max-w-6xl mx-auto flex items-center py-2 justify-between">
-          <Logo 
-            title="AI Battle Arena"
-            desc="Watch AI models compete"
-            variant="zap"
-          />
+          <Logo title="AI Battle Arena" desc="Watch AI models compete" variant="zap" />
           <div className="flex items-center gap-3 text-xs text-zinc-500">
             <span className="hidden sm:inline">⚡ Live</span>
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
@@ -455,17 +517,12 @@ const AiBattle = () => {
       </div>
 
       {/* Scrollable Content Area */}
-      <div 
+      <div
         ref={contentRef}
         className="relative z-10 flex-1 overflow-y-auto px-4 py-4 scrollbar-thin scrollbar-thumb-yellow-400/20 scrollbar-track-transparent bg-black"
       >
         {showWelcome && <WelcomeContent titles={titles || ""} />}
-        {!showWelcome && (
-          <ResponseDisplay 
-            isLoading={isLoading} 
-            userQuestion={userQuestion}
-          />
-        )}
+        {!showWelcome && <ResponseDisplay isLoading={isLoading} userQuestion={userQuestion} />}
         <div className="h-4"></div>
       </div>
 
@@ -473,10 +530,7 @@ const AiBattle = () => {
       <div className="relative z-10 flex justify-center shrink-0 px-4 pt-1 pb-safe sm:pb-4 bg-linear-to-t from-black via-black/95 to-transparent">
         <div className="max-w-4xl mx-auto w-full flex justify-center">
           <div className="w-full lg:w-full flex justify-center">
-            <CustomSearchBar 
-              onSend={handleSearch} 
-              isLoading={isLoading}
-            />
+            <CustomSearchBar onSend={handleSearch} isLoading={isLoading} />
           </div>
         </div>
       </div>
