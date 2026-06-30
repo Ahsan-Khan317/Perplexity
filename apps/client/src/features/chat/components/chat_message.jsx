@@ -22,7 +22,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
   };
 
   return (
-    <div className="w-full flex flex-col gap-6 px-3 sm:px-5 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
+    <div className="w-full flex scrollbar  flex-col gap-6 px-3 sm:pt-6 pb-6 bg-linear-to-b from-zinc-950 to-black overflow-x-hidden">
       {messages?.map((msg, index) => {
         const isAI = msg.role === "ai";
         const isLast = index === messages.length - 1;
@@ -74,8 +74,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
                   <div
                     className="
                       relative
-                      max-h-96
-                      overflow-y-auto overflow-x-hidden
+                      overflow-x-hidden
                       wrap-break-words whitespace-pre-wrap
                       bg-zinc-900/95
                       backdrop-blur-xl
@@ -124,8 +123,7 @@ const ChatMessage = ({ messages, isTyping = false, setslidestate }) => {
 
                   <div
                     className="
-                      max-h-96
-                      overflow-y-auto overflow-x-hidden
+                      overflow-x-hidden
                       wrap-break-words whitespace-pre-wrap
                       bg-yellow-400/5
                       backdrop-blur-xl

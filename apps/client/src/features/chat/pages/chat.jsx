@@ -36,7 +36,7 @@ const Chat = () => {
   };
 
   return (
-    <main className=" h-dvh flex overflow-hidden justify-center items-center bg-black/90 w-full">
+    <main className=" h-dvh min-h-0 flex overflow-hidden justify-center items-center scrollbar bg-black/90 w-full">
       {/* //sidebar */}
       <Sidebar
         slidestate={slidestate}
@@ -54,7 +54,17 @@ const Chat = () => {
         onTouchEnd={(e) => {
           handleEnd(e);
         }}
-        className="h-full flex-1 flex flex-col overflow-hidden p-2 sm:p-4 text-white"
+        className="
+ h-full
+ min-h-0
+ flex-1
+ flex
+ flex-col
+ overflow-hidden
+ 
+ sm:p-4
+ text-white
+ "
       >
         <Chat_section
           onclick={() => setslidestate(!slidestate)}

@@ -21,7 +21,19 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
   }, [messages]);
 
   return (
-    <div className="flex flex-1 flex-col  bg-linear-to-b from-zinc-950 to-black ">
+    <div
+      className="
+ flex-1
+ 
+ min-h-0
+ flex
+ flex-col
+ overflow-hidden
+ bg-linear-to-b
+ from-zinc-950
+ to-black
+ "
+    >
       {/* Mobile Header Bar - icon only, no extra text */}
 
       <button
@@ -35,7 +47,16 @@ const Chat_section = ({ onclick, active, setactive, setslidestate }) => {
       {/* Chat Messages Area */}
       <div
         ref={messagesRef}
-        className="flex flex-1 min-h-0 overflow-y-auto overscroll-contain scrollbar"
+        className="
+  flex
+    flex-1
+    min-h-0
+    overflow-y-auto
+   
+    overflow-x-hidden
+    overscroll-contain
+    scrollbar
+  "
       >
         {active ? (
           <ChatMessage messages={messages} setslidestate={setslidestate} />
